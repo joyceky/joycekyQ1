@@ -3,49 +3,49 @@ $(function() {
     makeButtons();
 });
 
-var classi  = ["any", "Photographs", "Paintings", "Prints", "Drawings",
-                "Multiples", "Books", "Jewelry", "Medals and Medallions",
-                "Plaques", "Sculpture", "Tools and Equipment", "Ritual Implements",
-                "Archival Material", "Textile Arts", "Coins", "Vessels", "Fragments"];
+var classi = ["any", "Coins",  "Prints",  "Books", "Jewelry", "Vessels", "Plaques", "Drawings",
+          "Multiples", "Paintings", "Sculpture", "Fragments",  "Textile Arts", "Photographs",
+          "Archival Material", "Ritual Implements", "Tools and Equipment", "Medals and Medallions"
+            ];
 var classification;
 
-function makeButtons(){
-  for (var i = 0; i < classi.length; i++) {
-    $("#buttons").append("<button class=\"btn\">" + classi[i] + "</button>");
-  }
-  $("#buttons").on("click", function(event) {
-      if (event.target !== event.currentTarget) {
-        classification = event.target.innerText;
-        getArt();
-  }
- });
+function makeButtons() {
+    for (var i = 0; i < classi.length; i++) {
+        $("#buttons").append("<button class=\"btn\">" + classi[i] + "</button><br>");
+    }
+    $("#buttons").on("click", function(event) {
+        if (event.target !== event.currentTarget) {
+            classification = event.target.innerText;
+            getArt();
+        }
+    });
 }
 
 function getArt() {
-  var content = document.getElementById("content");
+    var content = $("#content");
 
-      var fields = "primaryimageurl,classification,period,title,medium,century,culture,department,division,description,technique,dated";
+    var fields = "primaryimageurl,classification,period,title,medium,century,culture,department,division,description,technique,dated";
 
-      var url = "https://g-ham.herokuapp.com/object?apikey=335c6710-9d5a-11e6-8ab4-ad600566c465&size=10&classification=" + classification + "&fields=" + fields + "&hasimage=1&sort=random";
+    var url = "https://g-ham.herokuapp.com/object?apikey=335c6710-9d5a-11e6-8ab4-ad600566c465&size=30&classification=" + classification + "&fields=" + fields + "&hasimage=1&sort=random";
 
-      var request = $.ajax({
-          url: url,
-          dataType: "json"
-      });
-
-    request.done(function (data) {
-
-      console.log(data);
-      var imgArr = [];
-      content.innerHTML = "";
-      for (var i = 0; i < data.records.length; i++) {
-          imgArr.push(data.records[i]);
-          content.innerHTML += "<br><img class=\"gif\" src=" + imgArr[i].primaryimageurl + ">";
-          console.log(imgArr[i].classification);
-      }
+    var request = $.ajax({
+        url: url,
+        dataType: "json"
     });
 
-    request.fail(function (jqXHR, textStatus) {
+    request.done(function(data) {
+
+        console.log(data);
+        var imgArr = [];
+        content.empty();
+        for (var i = 0; i < data.records.length; i++) {
+            imgArr.push(data.records[i]);
+            var myImg = "<br><img class=\"gif\" src=" + imgArr[i].primaryimageurl + ">";
+            content.append(myImg).fadeIn("slow");
+            console.log(imgArr[i].classification);
+        }
+    });
+    request.fail(function(jqXHR, textStatus) {
         console.log("Request failed: " + textStatus);
 
     });
