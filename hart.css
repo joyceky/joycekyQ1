@@ -4,26 +4,28 @@
     padding: 0;
     height: 100vh;
     width: 100vw;
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-    background-color: rgba(137, 144, 164, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   background-color: rgba(137, 144, 164, 0.2);
+}
+#buttons {
+  width: 80vw;
+}
+
+button {
+  margin: 10px;
 }
 
 h1 {
     font-family: "Comfortaa";
     font-size: 74px;
-    font-weight: 700;
-    color: rgb(43, 3, 94);
+    font-weight: 400;
+    color: rgb(149, 22, 53);
     padding: 20px;
 }
 
-#s {
-    height: 60px;
-    width: 250px;
-    font-family: "Maven Pro";
-    font-size: 28px;
-    font-weight: 400;
-    padding: 20px;
-    color: rgb(38, 12, 125);
+#content {
+  height: 80vh;
+  overflow: scroll;
 }

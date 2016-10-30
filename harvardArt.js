@@ -1,46 +1,54 @@
 "use strict";
 $(function() {
-    getArt();
+    makeButtons();
 });
 
-function getArt() {
+var classi  = ["any", "Photographs", "Paintings", "Prints", "Drawings",
+                "Multiples", "Books", "Jewelry", "Medals and Medallions",
+                "Plaques", "Sculpture", "Tools and Equipment", "Ritual Implements",
+                "Archival Material", "Textile Arts", "Coins", "Vessels", "Fragments"];
+var classification;
 
-  var classification  = '';
+function makeButtons(){
+  for (var i = 0; i < classi.length; i++) {
+    $("#buttons").append("<button class=\"btn\">" + classi[i] + "</button>");
+  }
+  $("#buttons").on("click", function(event) {
+      if (event.target !== event.currentTarget) {
+        classification = event.target.innerText;
+        getArt();
+  }
+ });
+}
+
+function getArt() {
   var content = document.getElementById("content");
 
-  $('#domainform').on('submit', function(event) {
-      event.preventDefault();
-      var classification = $('#s').val();
-      classification = classification.replace(/\s+/g, '');
-      classification = classification.charAt(0).toUpperCase();
-      content.innerHTML = "";
-      $('#s').val('');
-      console.log(classification);
       var fields = "primaryimageurl,classification,period,title,medium,century,culture,department,division,description,technique,dated";
-      var url = "https://g-ham.herokuapp.com/object?apikey=335c6710-9d5a-11e6-8ab4-ad600566c465&size=100&classification=any&fields=" + fields + "&hasimage=1&sort=century"
-    var request = $.ajax({
-        url: url,
-        dataType: "json"
-    });
+
+      var url = "https://g-ham.herokuapp.com/object?apikey=335c6710-9d5a-11e6-8ab4-ad600566c465&size=10&classification=" + classification + "&fields=" + fields + "&hasimage=1&sort=random";
+
+      var request = $.ajax({
+          url: url,
+          dataType: "json"
+      });
 
     request.done(function (data) {
 
       console.log(data);
       var imgArr = [];
-
+      content.innerHTML = "";
       for (var i = 0; i < data.records.length; i++) {
           imgArr.push(data.records[i]);
           content.innerHTML += "<br><img class=\"gif\" src=" + imgArr[i].primaryimageurl + ">";
+          console.log(imgArr[i].classification);
       }
-      console.log(imgArr);
     });
-
 
     request.fail(function (jqXHR, textStatus) {
         console.log("Request failed: " + textStatus);
 
     });
-  });
 }
 
 // $(function() {
