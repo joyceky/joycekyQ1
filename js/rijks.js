@@ -38,6 +38,8 @@ function getRijksArt() {
           });
         }
 
+var currentImg = 0;
+
 function addToContent() {
             var artDiv = $("#art");
             var infoDiv = $("#info");
@@ -51,7 +53,17 @@ function addToContent() {
               }
               var art = '<img class="art" src=' + rijksArt[i].webImage.url + '>';
               artDiv.append(art);
-              var info = '<p>' + rijksArt[i].longTitle + '</p><br><p>' + rijksArt[i].principalOrFirstMaker + '</p>';
-              artDiv.append(info);
+              var info = '<p>' + rijksArt[i].longTitle + '</p><p>' + rijksArt[i].principalOrFirstMaker + '</p>';
+              infoDiv.append(info);
+              break;
                 }
               }
+
+function moveForward(){
+  var forward = $("#forward");
+}
+
+function moveBack(){
+  var back = $("#back");
+
+}
