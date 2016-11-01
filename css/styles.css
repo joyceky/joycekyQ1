@@ -133,6 +133,11 @@ h1 {
   color: rgb(238, 77, 55);
 }
 
+#about span {
+  font-size: 15px;
+  line-height: 10px;
+}
+
 
 
 /*********************ABOUT PAGE*********************/
