@@ -26,7 +26,7 @@ function getHArt() {
 
     var fields = "primaryimageurl,classification,period,title,medium,century,culture,department,division,description,technique,dated";
 
-    var url = "https://g-ham.herokuapp.com/object?apikey=335c6710-9d5a-11e6-8ab4-ad600566c465&size=5&classification=" + classification + "&fields=" + fields + "&hasimage=1&sort=random";
+    var url = "https://g-ham.herokuapp.com/object?apikey=335c6710-9d5a-11e6-8ab4-ad600566c465&size=50&classification=" + classification + "&fields=" + fields + "&hasimage=1&sort=random";
 
     var request = $.ajax({
         url: url,
@@ -46,31 +46,3 @@ function getHArt() {
         console.log("Request failed: " + textStatus);
     });
 }
-
-// $(function() {
-//
-//     // Set the api variable
-//     var content = document.getElementById("content");
-//
-//     $('#domainform').on('submit', function(event) {
-//         event.preventDefault();
-//
-//         var apiKey = "335c6710-9d5a-11e6-8ab4-ad600566c465";
-//
-//         var search = $('#s').val();
-//         search = search.replace(/\s+/g, '');
-//         content.innerHTML = "";
-//         $('#s').val('');
-//         var hArtAPI = 'http://api.harvardartmuseums.org?api_key=' + apiKey + 'callback=?';
-//         // Make a ajax call to get the json data as data.
-//         $.getJSON(hArtAPI, function(data) {
-//             console.log(data);
-//             var artArr = [];
-//             //
-//             // for (var i = 0; i < data.data.length; i++) {
-//             //     giphArr.push(data.data[i].images.downsized);
-//             //     content.innerHTML += "<br><img class=\"gif\" src=" + giphArr[i].url + ">";
-//             // }
-//         });
-//     });
-// });

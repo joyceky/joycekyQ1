@@ -1,0 +1,148 @@
+body {
+  font-family: "Josefin Sans";
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  background: #ffffff;
+}
+
+/*********************NAVIGATION*********************/
+.navbar {
+  background: rgb(228, 223, 254);
+}
+
+.nav.navbar-nav.navbar-right li a {
+    color: rgb(238, 77, 55);
+    font-size: 20px;
+    font-weight: bold;
+}
+/*********************NAVIGATION*********************/
+
+/*********************LANDING PAGE*********************/
+
+h1 {
+  font-family: "Abril Fatface";
+}
+
+#welcome {
+  font-size: 70px;
+  color: rgb(133, 83, 226);
+  margin-left: 20vw;
+}
+
+#ooma {
+  color: rgb(83, 83, 98);
+  font-size: 40px;
+  text-align: center;
+}
+
+.divider {
+  width: 100vw;
+  opacity: 0.25;
+  margin: 8vh 0;
+}
+
+
+#explore {
+  font-family: "Josefin Sans";
+  font-size: 55px;
+  font-weight: 500;
+  color: rgb(83, 83, 98);
+}
+
+#museums {
+  height: 450px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.museumDisplay {
+  height: 40vh;
+  width: 50vw;
+  display: inline-block;
+  font-family: "Abril Fatface";
+  font-size: 40px;
+  color: rgb(238, 77, 55);
+}
+
+.museumDisplay img {
+  height: 300px;
+  width: 500px;
+  border-radius: 5px;
+}
+
+#contactDiv {
+  height: 200px;
+  width: 100vh;
+  text-align: center;
+  margin: 0 auto;
+  color: rgb(133, 83, 226);
+}
+
+
+#mail {
+  color: rgb(238, 77, 55);
+  font-size: 40px;
+}
+
+.glyphicon {
+    font-size: 30px;
+    color: rgb(238, 77, 55);
+    padding: 0 10px;
+}
+
+
+#footer {
+  height: 80px;
+  background: rgb(228, 223, 254);
+}
+
+#footer p {
+  padding: 0 50px;
+  font-size: 20px;
+}
+
+#footer a {
+  color: rgb(238, 77, 55);
+}
+
+/*********************LANDING PAGE*********************/
+
+/*********************ABOUT PAGE*********************/
+#about {
+  height: 200px;
+  width: 100vh;
+  text-align: center;
+  margin: 0 auto;
+}
+
+
+/*********************ABOUT PAGE*********************/
+
+
+#searchfield {
+  height: 95vh;
+  background: rgb(145, 154, 237);
+}
+
+#content {
+    height: 100vh;
+    width: 80vw;
+    text-align: center;
+    overflow: scroll;
+}
+
+#art {
+  height: 100vh;
+  width: 80vw;
+  overflow: scroll;
+  display: inline-block;
+}
+
+
+
+.art {
+  height: 80vh;
+  padding-right: 20px;
+
+}

@@ -16,7 +16,7 @@ function getFinnArt() {
         var query = $('#s').val();
         query = query.replace(/\s+/g, '');
 
-        var url = "http://kokoelmat.fng.fi/api/v2?apikey=iux6oahe20gvn&q=search:" + query + "&format=dc-jsonp";
+        var url = "http://kokoelmat.fng.fi/api/v2?apikey=iux6oahe20gvn&q=search:" + query + "&format=dc-json";
 
         var request = $.ajax({
             url: url,
@@ -24,7 +24,7 @@ function getFinnArt() {
         });
 
         request.done(function(data) {
-              console.log(data);
+              console.log(data.descriptionSet);
           //     var rijksArt = data.artObjects;
           //     content.empty();
           //     content.hide();

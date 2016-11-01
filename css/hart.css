@@ -17,11 +17,7 @@ button {
   color: rgb(29, 121, 99);
 }
 
-#content {
-    height: 100vh;
-    text-align: center;
-    overflow: scroll;
-}
+
 
 img {
   padding: 10px;

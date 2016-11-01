@@ -3,41 +3,67 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Art</title>
-    <!-- Latest compiled and minified CSS -->
+    <title>OOMA</title>
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Exo+2|Karla" rel="stylesheet">
-    <link rel="stylesheet" href="css/landing-page.csshart.css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Abril+Fatface" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">OOMA</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="about.html">About</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse Museums <span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-menu -right">
+                            <li><a href="hart.html">Harvard Art Museum</a></li>
+                            <li><a href="rijks.html">Rijksmuseum</a></li>
+                            <!-- <li><a href="finnGal.html">Finn Gal</a></li> -->
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
 
     <div class="container-fluid">
-      <row>
-        <div class="col-md-8 col-lg-2">
-          <div id="searchfield">
-              <form id="domainform" name="domainform">
-                  <input type="text" class="search" id="s" name="s" placeholder="ex: Cats">
-              </form>
-          </div>
-        </div>
-      </div>
+        <div class="row">
+            <div class="col-md-8 col-lg-2">
+                <div id="searchfield">
+                    <form id="domainform" name="domainform">
+                        <input type="text" class="search" id="s" name="s" placeholder="ex: Cats">
+                    </form>
+                </div>
+            </div>
 
-      <div class="col-md-12 col-lg-10"
-        <div id="content"></div>
-        </div>
+            <div class="col-md-12 col-lg-10">
+              <div id="content">
+                <div id="art">
 
-      </row>
+              </div>
+            <div>
+        </div>
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="js/rijks.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="js/rijks.js"></script>
 
 </body>
 
