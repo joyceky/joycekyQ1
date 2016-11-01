@@ -120,7 +120,7 @@ h1 {
 #aboutHeader {
   font-size: 70px;
   color: rgb(133, 83, 226);
-  padding: 6vh 0;
+  padding: 4vh 0;
 }
 
 #about p {
@@ -133,9 +133,9 @@ h1 {
   color: rgb(238, 77, 55);
 }
 
-#about span {
+#about h4 {
   font-size: 15px;
-  line-height: 10px;
+  color: rgb(121, 119, 124);
 }
 
 
