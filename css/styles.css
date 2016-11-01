@@ -109,12 +109,30 @@ h1 {
 /*********************LANDING PAGE*********************/
 
 /*********************ABOUT PAGE*********************/
+
 #about {
-  height: 200px;
-  width: 100vh;
+  height: 80vh;
+  width: 100vw;
   text-align: center;
-  margin: 0 auto;
+  color: rgb(133, 83, 226);
 }
+
+#aboutHeader {
+  font-size: 70px;
+  color: rgb(133, 83, 226);
+  padding: 6vh 0;
+}
+
+#about p {
+  font-size: 25px;
+  color: rgb(83, 83, 98);
+  line-height: 50px;
+}
+
+#about a {
+  color: rgb(238, 77, 55);
+}
+
 
 
 /*********************ABOUT PAGE*********************/
