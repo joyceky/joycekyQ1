@@ -3,6 +3,7 @@
 $(document).ready(function() {
     getRijksArt();
     moveForward();
+    moveBack();
 });
 /*********************GLOBALS***************************/
 var rijksArt = [];
@@ -67,13 +68,9 @@ function addToContent() {
     }
 }
 
-//if equal to length, back to 0
-//if at 0 and go backwards, set to length - 1
-
 function moveForward() {
     console.log("LISTENING");
     var forward = $("#forward");
-    //var back = $("#back");
 
     forward.on("click", function() {
 
@@ -82,7 +79,7 @@ function moveForward() {
               if (i === rijksArt.length) {
                   i = 0;
               }
-              
+
             artDiv.empty();
             infoDiv.empty();
 
@@ -97,25 +94,28 @@ function moveForward() {
     });
 }
 
-// back.on("click", function(){
-//     artDiv.empty();
-//     infoDiv.empty();
-//     var art = '<img class="art" src=' + rijksArt.prev.webImage.url + '>';
-//     artDiv.append(art);
-//     var info = '<p>' + rijksArt.prev.longTitle + '</p><p>' + rijksArt.prev.principalOrFirstMaker + '</p>';
-//     infoDiv.append(info);
-//   });
+function moveBack(){
+  var back = $("#back");
 
-// function moveBack(){
-//   var back = $("#back");
-//
-//   back.on("click", function(){
-//     artDiv.empty();
-//     infoDiv.empty();
-//     var art = '<img class="art" src=' + prevImg.webImage.url + '>';
-//     artDiv.append(art);
-//     var info = '<p>' + prevImg.longTitle + '</p><p>' + prevImg.principalOrFirstMaker + '</p>';
-//     infoDiv.append(info);
-//    currentImg--;
-// });
-// }
+  back.on("click", function() {
+
+      for (var i = currentImg-1; i < rijksArt.length+1; i++) {
+
+            if (i === -1) {
+                i = rijksArt.length - 1;
+            }
+
+          artDiv.empty();
+          infoDiv.empty();
+
+          var art = '<img class="art" src=' + rijksArt[i].webImage.url + '>';
+          artDiv.append(art);
+          var info = '<p>' + rijksArt[i].longTitle + '</p><p>' + rijksArt[i].principalOrFirstMaker + '</p>';
+          infoDiv.append(info, i);
+          currentImg = i;
+
+          break;
+      }
+  });
+
+}
