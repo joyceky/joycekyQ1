@@ -22,13 +22,14 @@ var url = "https://g-ham.herokuapp.com/object?apikey=335c6710-9d5a-11e6-8ab4-ad6
 /*******************************************************/
 
 function makeButtons() {
-    for (var i = 0; i < classi.length; i++) {
-        $("#buttons").append("<button class=\"btn\">" + classi[i] + "</button><br>");
+    for (let i = 0; i < classi.length; i++) {
+        $("#dropdown").append('<li><a class="dropdown-item" href="#">' + classi[i] + '</a></li>');
     }
-    $("#buttons").on("click", function(event) {
+
+    $("#dropdown").on("click", function(event) {
         if (event.target !== event.currentTarget) {
             classification = event.target.innerText;
-            getHArtButtons(classification);
+            getHArtDropdown(classification);
         }
 
         $('#domainform').on('submit', function(event) {
@@ -94,7 +95,7 @@ function getHartSearch(quer) {
   }
 
 
-function getHArtButtons(classif) {
+function getHArtDropdown(classif) {
     var request = $.ajax({
         url: url + "&classification=" + classif,
         dataType: "json"
