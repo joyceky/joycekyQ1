@@ -41,7 +41,7 @@ function getHArt() {
     });
 
     request.done(function(data) {
-        console.log(data.records)
+        // console.log(data.records)
         hArt = [];
         for (var i = 0; i < data.records.length; i++) {
             hArt.push(data.records[i]);
