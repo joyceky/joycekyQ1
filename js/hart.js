@@ -44,7 +44,15 @@ function getHArt() {
         // console.log(data.records)
         hArt = [];
         for (var i = 0; i < data.records.length; i++) {
-            hArt.push(data.records[i]);
+          let artData = data.records[i];
+          console.log(artData, "original");
+          Object.keys(artData).forEach(function (key) {
+           if(artData[key] == null){
+              delete artData[key];
+            }
+          });
+          console.log(artData, "filtered");
+          hArt.push(artData);
         }
         addToContent();
     });
