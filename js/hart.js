@@ -9,11 +9,16 @@ var hArt = [];
 var currentImg = 0;
 var artDiv = $("#art");
 var infoDiv = $("#info");
-var classi = ["any", "Coins",  "Prints",  "Books", "Jewelry", "Vessels", "Plaques", "Drawings",
-          "Multiples", "Paintings", "Sculpture", "Fragments",  "Textile Arts", "Photographs",
-          "Archival Material", "Ritual Implements", "Tools and Equipment", "Medals and Medallions"
-            ];
+
+var classi = ["any", "Coins", "Prints", "Books", "Jewelry", "Vessels", "Plaques", "Drawings",
+    "Multiples", "Paintings", "Sculpture", "Fragments", "Textile Arts", "Photographs",
+    "Archival Material", "Ritual Implements", "Tools and Equipment", "Medals and Medallions"
+];
 var classification;
+var fields = "primaryimageurl,classification,period,title,medium,century,culture,department,division,description,technique,dated";
+
+var url = "https://g-ham.herokuapp.com/object?apikey=335c6710-9d5a-11e6-8ab4-ad600566c465&size=20&fields=" + fields + "&hasimage=1&sort=random";
+
 /*******************************************************/
 
 function makeButtons() {
@@ -23,20 +28,26 @@ function makeButtons() {
     $("#buttons").on("click", function(event) {
         if (event.target !== event.currentTarget) {
             classification = event.target.innerText;
-            getHArt();
+            getHArtButtons(classification);
         }
+
+        $('#domainform').on('submit', function(event) {
+            event.preventDefault();
+
+            var query = $('#s').val();
+            query = query.replace(/\s+/g, '');
+            $('#s').val('');
+            console.log(query);
+
+            getHartSearch(query);
+        });
     });
 }
 
-function getHArt() {
-    var content = $("#content");
-
-    var fields = "primaryimageurl,classification,period,title,medium,century,culture,department,division,description,technique,dated";
-
-    var url = "https://g-ham.herokuapp.com/object?apikey=335c6710-9d5a-11e6-8ab4-ad600566c465&size=50&classification=" + classification + "&fields=" + fields + "&hasimage=1&sort=random";
+function getHartSearch(quer) {
 
     var request = $.ajax({
-        url: url,
+        url: url + "&query=" + quer,
         dataType: "json"
     });
 
@@ -44,16 +55,63 @@ function getHArt() {
         // console.log(data.records)
         hArt = [];
         for (var i = 0; i < data.records.length; i++) {
-          let artData = data.records[i];
-          console.log(artData, "original");
-          Object.keys(artData).forEach(function (key) {
-           if(artData[key] == null){
-              delete artData[key];
-            }
-          });
-          console.log(artData, "filtered");
-          hArt.push(artData);
+            let artData = data.records[i];
+            Object.keys(artData).forEach(function(key) {
+                if (artData[key] == null) {
+                    delete artData[key];
+                }
+            });
+            hArt.push(artData);
         }
+        console.log(hArt, "search");
+        addToContent();
+    });
+
+
+    request.fail(function(jqXHR, textStatus) {
+        console.log("Request failed: " + textStatus);
+    });
+}
+
+
+  function createArtElement(artObj) {
+    var str = '<p>' + artObj.title + '</p>';
+
+    if (artObj.culture) {
+      str += '<p>' + artObj.culture + '</p>';
+    }
+
+    if (artObj.period) {
+      console.log(artObj.period)
+      str += '<p>' + artObj.period + '</p>'
+    }
+
+    if (artObj.medium) {
+      str += '<p>' + artObj.medium + '</p>'
+    }
+
+    return $(str);
+  }
+
+
+function getHArtButtons(classif) {
+    var request = $.ajax({
+        url: url + "&classification=" + classif,
+        dataType: "json"
+    });
+
+    request.done(function(data) {
+        hArt = [];
+        for (var i = 0; i < data.records.length; i++) {
+            let artData = data.records[i];
+            Object.keys(artData).forEach(function(key) {
+                if (artData[key] == null) {
+                    delete artData[key];
+                }
+            });
+            hArt.push(artData);
+        }
+        console.log(hArt, "buttons");
         addToContent();
     });
 
@@ -61,6 +119,7 @@ function getHArt() {
         console.log("Request failed: " + textStatus);
     });
 }
+
 
 function addToContent() {
     artDiv.empty();
@@ -71,8 +130,14 @@ function addToContent() {
         var art = '<img class="art" src=' + hArt[i].primaryimageurl + '>';
         artDiv.append(art);
 
-        var info = '<p>' + hArt[i].title + ' : ' + hArt[i].culture + '</p><p>' + hArt[i].period + '</p><p>' + hArt[i].medium + '</p>';
-        infoDiv.append(info);
+        // var info = '<p>' + hArt[i].title + ' : ' + hArt[i].culture + '</p><p>' + hArt[i].period + '</p><p>' + hArt[i].medium + '</p>';
+
+
+        if(hArt && Array.isArray(hArt) && hArt[i].title) {
+          infoDiv.append(createArtElement(hArt[i]));
+        }
+
+        // infoDiv.append(info);
 
         currentImg = i;
         break;
@@ -96,8 +161,11 @@ function moveForward() {
 
             var art = '<img class="art" src=' + hArt[i].primaryimageurl + '>';
             artDiv.append(art);
-            var info = '<p>' + hArt[i].title + '</p><p>' + hArt[i].culture + '</p><p>' + hArt[i].period + '</p><p>' + hArt[i].medium + '</p>';
-            infoDiv.append(info);
+
+            if(hArt && Array.isArray(hArt) && hArt[i].title) {
+              infoDiv.append(createArtElement(hArt[i]));
+            }
+        
             currentImg = i;
 
             break;
@@ -121,12 +189,14 @@ function moveBack() {
 
             var art = '<img class="art" src=' + hArt[i].primaryimageurl + '>';
             artDiv.append(art);
-            var info = '<p>' + hArt[i].title + '</p><p>' + hArt[i].culture + '</p><p>' + hArt[i].period + '</p><p>' + hArt[i].medium + '</p>';
-            infoDiv.append(info);
+
+            if(hArt && Array.isArray(hArt) && hArt[i].title) {
+              infoDiv.append(createArtElement(hArt[i]));
+            }
+
             currentImg = i;
 
             break;
         }
     });
-
 }
