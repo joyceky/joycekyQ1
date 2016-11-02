@@ -1,15 +1,18 @@
 "use strict";
 
-$( document ).ready(function() {
+$(document).ready(function() {
     getRijksArt();
-
+    moveForward();
 });
-
+/*********************GLOBALS***************************/
 var rijksArt = [];
+var currentImg = 0;
+var artDiv = $("#art");
+var infoDiv = $("#info");
 
 function getRijksArt() {
 
-  $('#domainform').on('submit', function(event) {
+    $('#domainform').on('submit', function(event) {
         event.preventDefault();
 
         var query = $('#s').val();
@@ -24,46 +27,95 @@ function getRijksArt() {
         });
 
         request.done(function(data) {
-              console.log(data.artObjects);
-              rijksArt = data.artObjects;
-              // content.empty();
-              // content.hide();
-              console.log(rijksArt);
-              addToContent();
-            });
+            console.log(data.artObjects)
+            rijksArt = [];
+            for (var i = 0; i < data.artObjects.length; i++) {
+              if (data.artObjects[i].hasImage === false) {
+                continue;
+              }
+              rijksArt.push(data.artObjects[i]);
+            }
 
-            request.fail(function(jqXHR, textStatus) {
-                console.log("Request failed: " + textStatus);
-            });
-          });
-        }
+            // content.empty();
+            // content.hide();
+            console.log(rijksArt, "ONLY IMAGES");
+            addToContent();
 
-var currentImg = 0;
+            // moveBack();
+        });
+
+        request.fail(function(jqXHR, textStatus) {
+            console.log("Request failed: " + textStatus);
+        });
+    });
+}
 
 function addToContent() {
-            var artDiv = $("#art");
-            var infoDiv = $("#info");
+    artDiv.empty();
+    infoDiv.empty();
 
+    for (var i = 0; i <= rijksArt.length; i++) {
+
+        var art = '<img class="art" src=' + rijksArt[i].webImage.url + '>';
+        artDiv.append(art);
+
+        var info = '<p>' + rijksArt[i].longTitle + '</p><p>' + rijksArt[i].principalOrFirstMaker + '</p>';
+        infoDiv.append(info);
+
+        currentImg = i;
+        break;
+    }
+}
+
+//if equal to length, back to 0
+//if at 0 and go backwards, set to length - 1
+
+function moveForward() {
+    console.log("LISTENING");
+    var forward = $("#forward");
+    //var back = $("#back");
+
+    forward.on("click", function() {
+
+        for (var i = currentImg+1; i < rijksArt.length+1; i++) {
+
+              if (i === rijksArt.length) {
+                  i = 0;
+              }
+              
             artDiv.empty();
             infoDiv.empty();
 
-            for (var i = 0; i < rijksArt.length; i++) {
-              if(rijksArt[i].hasImage === false) {
-                continue;
-              }
-              var art = '<img class="art" src=' + rijksArt[i].webImage.url + '>';
-              artDiv.append(art);
-              var info = '<p>' + rijksArt[i].longTitle + '</p><p>' + rijksArt[i].principalOrFirstMaker + '</p>';
-              infoDiv.append(info);
-              break;
-                }
-              }
+            var art = '<img class="art" src=' + rijksArt[i].webImage.url + '>';
+            artDiv.append(art);
+            var info = '<p>' + rijksArt[i].longTitle + '</p><p>' + rijksArt[i].principalOrFirstMaker + '</p>';
+            infoDiv.append(info, i);
+            currentImg = i;
 
-function moveForward(){
-  var forward = $("#forward");
+            break;
+        }
+    });
 }
 
-function moveBack(){
-  var back = $("#back");
+// back.on("click", function(){
+//     artDiv.empty();
+//     infoDiv.empty();
+//     var art = '<img class="art" src=' + rijksArt.prev.webImage.url + '>';
+//     artDiv.append(art);
+//     var info = '<p>' + rijksArt.prev.longTitle + '</p><p>' + rijksArt.prev.principalOrFirstMaker + '</p>';
+//     infoDiv.append(info);
+//   });
 
-}
+// function moveBack(){
+//   var back = $("#back");
+//
+//   back.on("click", function(){
+//     artDiv.empty();
+//     infoDiv.empty();
+//     var art = '<img class="art" src=' + prevImg.webImage.url + '>';
+//     artDiv.append(art);
+//     var info = '<p>' + prevImg.longTitle + '</p><p>' + prevImg.principalOrFirstMaker + '</p>';
+//     infoDiv.append(info);
+//    currentImg--;
+// });
+// }
