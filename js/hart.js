@@ -17,7 +17,7 @@ var classi = ["any", "Coins", "Prints", "Books", "Jewelry", "Vessels", "Plaques"
 var classification;
 var fields = "primaryimageurl,classification,period,title,medium,century,culture,department,division,description,technique,dated";
 
-var url = "https://g-ham.herokuapp.com/object?apikey=335c6710-9d5a-11e6-8ab4-ad600566c465&size=20&fields=" + fields + "&hasimage=1&sort=random";
+var url = "https://g-ham.herokuapp.com/object?apikey=335c6710-9d5a-11e6-8ab4-ad600566c465&size=50&fields=" + fields + "&hasimage=1&sort=random";
 
 /*******************************************************/
 
@@ -165,7 +165,7 @@ function moveForward() {
             if(hArt && Array.isArray(hArt) && hArt[i].title) {
               infoDiv.append(createArtElement(hArt[i]));
             }
-        
+
             currentImg = i;
 
             break;

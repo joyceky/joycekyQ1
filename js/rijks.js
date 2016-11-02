@@ -11,7 +11,15 @@ var rijksArt = [];
 var currentImg = 0;
 var artDiv = $("#art");
 var infoDiv = $("#info");
+var forward = $("#forward");
+var back = $("#back");
+var art;
+var info;
 /*******************************************************/
+
+// function populatePage {
+//
+// }
 
 function getRijksArt() {
 
@@ -53,9 +61,9 @@ function addToContent() {
     artDiv.empty();
     infoDiv.empty();
 
-    for (var i = 0; i <= rijksArt.length; i++) {
+    for (let i = 0; i <= rijksArt.length; i++) {
 
-        var art = '<img class="art" src=' + rijksArt[i].webImage.url + '>';
+        var art = '<img class="art" src=\"' + rijksArt[i].webImage.url + '\">';
         artDiv.append(art);
 
         var info = '<p>' + rijksArt[i].longTitle + '</p><p>' + rijksArt[i].principalOrFirstMaker + '</p>';
@@ -67,24 +75,22 @@ function addToContent() {
 }
 
 function moveForward() {
-    console.log("LISTENING");
-    var forward = $("#forward");
-
     forward.on("click", function() {
 
-        for (var i = currentImg + 1; i < rijksArt.length + 1; i++) {
+        artDiv.empty();
+        infoDiv.empty();
+
+        for (let i = currentImg + 1; i < rijksArt.length + 1; i++) {
 
             if (i === rijksArt.length) {
                 i = 0;
             }
 
-            artDiv.empty();
-            infoDiv.empty();
-
-            var art = '<img class="art" src=' + rijksArt[i].webImage.url + '>';
+            art = '<img class="art" src=\"' + rijksArt[i].webImage.url + '\">';
             artDiv.append(art);
-            var info = '<p>' + rijksArt[i].longTitle + '</p><p>' + rijksArt[i].principalOrFirstMaker + '</p>';
+            info = '<p>' + rijksArt[i].longTitle + '</p><p>' + rijksArt[i].principalOrFirstMaker + '</p>';
             infoDiv.append(info);
+
             currentImg = i;
 
             break;
@@ -92,8 +98,34 @@ function moveForward() {
     });
 }
 
+// function moveForward() {
+//     console.log("LISTENING");
+//
+//     forward.on("click", function() {
+//
+//         for (var i = currentImg + 1; i < rijksArt.length + 1; i++) {
+//             if (i === rijksArt.length) {
+//                 i = 0;
+//             }
+//
+//             artDiv.empty();
+//             infoDiv.empty();
+//
+//             var art = '<img class="art" src=\"' + rijksArt[i].webImage.url + '\">';
+//             artDiv.append(art);
+//
+//             var info = '<p>' + rijksArt[i].longTitle + '</p><p>' + rijksArt[i].principalOrFirstMaker + '</p>';
+//             infoDiv.append(info);
+//
+//             currentImg = i;
+//
+//             break;
+//           }
+//     });
+//   }
+
+
 function moveBack() {
-    var back = $("#back");
 
     back.on("click", function() {
 
@@ -106,14 +138,14 @@ function moveBack() {
             artDiv.empty();
             infoDiv.empty();
 
-            var art = '<img class="art" src=' + rijksArt[i].webImage.url + '>';
+            art = '<img class="art" src=\"' + rijksArt[i].webImage.url + '\">';
             artDiv.append(art);
-            var info = '<p>' + rijksArt[i].longTitle + '</p><p>' + rijksArt[i].principalOrFirstMaker + '</p>';
+            info = '<p>' + rijksArt[i].longTitle + '</p><p>' + rijksArt[i].principalOrFirstMaker + '</p>';
             infoDiv.append(info);
+
             currentImg = i;
 
             break;
         }
     });
-
 }
