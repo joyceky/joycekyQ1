@@ -108,7 +108,6 @@ function addToContent() {
     artDiv.fadeIn();
 }
 
-
 function moveForward() {
     forward.on("click", function() {
         event.preventDefault();
@@ -136,10 +135,10 @@ function moveForward() {
 
             break;
         }
-        artDiv.fadeIn();
 
+        artDiv.fadeIn();
     });
-}
+   }
 
 
 function moveBack() {

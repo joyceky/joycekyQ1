@@ -1,6 +1,16 @@
 "use strict";
 
 $(document).ready(function() {
+
+  var now = new Date();
+  console.log(now, "NOW");
+  // var millisTill10 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10, 0, 0, 0) - now;
+  // if (millisTill10 < 0) {
+  //      millisTill10 += 86400000; // it's after 10am, try 10am tomorrow.
+  // }
+  //
+  // setTimeout(function(){alert("It's 10am!")}, millisTill10);
+  //
   var storedArt = JSON.parse(localStorage.getItem("artArr"));
   console.log(JSON.parse(localStorage.getItem("artArr")), "STORED ART");
   var currentPosition = (JSON.parse(localStorage.getItem("currentImg")));
@@ -90,5 +100,5 @@ function addToContent() {
 
         break;
     }
-    artDiv.fadeIn("slow");
+    // artDiv.fadeIn("slow");
 }

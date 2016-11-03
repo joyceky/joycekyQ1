@@ -61,7 +61,7 @@
 
 
           <div id="art" class="col-xs-12 col-centered">
-            <img id="art-image" class="art">
+            <img id="art-image" class="art" onload="fadeIn(this)" src="http://farm8.staticflickr.com/7227/7007769551_3b5b1640ea_b.jpg" style="display:none;">
           </div>
 
         </div><!-- row -->
@@ -88,6 +88,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="js/artOTD.js"></script>
-</body>
+
+    <script>
+    // this function must be defined in the global scope
+    window.fadeIn = function(obj) {
+        $(obj).fadeIn(1000);
+      }
+    </script>
+        
+ </body>
 
 </html>
