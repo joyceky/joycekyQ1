@@ -146,6 +146,11 @@ h1 {
   margin: 0;
 }
 
+button {
+  background: rgb(228, 223, 254);
+  color: rgb(121, 119, 124);
+}
+
 .row-centered {
     text-align:center;
 }
@@ -156,35 +161,38 @@ h1 {
 }
 
 .dropdown-toggle {
-  height: 50px;
-  width: 200px;
+  height: 60px;
+  width: 270px;
   font-size: 20px;
+
+
 }
-
-
-/*************************MUSEUM*********************/
-
 
 #searchfield {
   height: 5vh;
+  padding-top: 10px;
 }
 
 #s {
-  height: 50px;
-  width: 200px;
+  text-align: center;
+  height: 60px;
+  width: 270px;
   border-radius: 5px;
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 200;
+  color: rgb(121, 119, 124);
 }
 
 #content {
     width: 100vw;
+    padding: 40px 0;
 }
 
 #art {
   width: 83vw;
   height: 80vh;
   overflow: scroll;
+  margin-bottom: 30px;
 }
 
 .arrowBtn {
@@ -200,10 +208,14 @@ h1 {
   border: 2px rgb(169, 171, 181) solid;
   font-size: 18px;
   line-height: 20px;
-  padding-top: 10px;
-  padding-bottom: 0;
 }
 
 .art {
     height: 80vh;
 }
+
+#content p {
+  color: rgb(121, 119, 124);
+}
+
+/*************************MUSEUM*********************/

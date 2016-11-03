@@ -1,9 +1,11 @@
 "use strict";
 $(function() {
     makeButtons();
+    getSearch();
     moveForward();
     moveBack();
 });
+
 /*********************GLOBALS***************************/
 var hArt = [];
 var currentImg = 0;
@@ -36,17 +38,19 @@ function makeButtons() {
             classification = event.target.innerText;
             getHArtDropdown(classification);
         }
+    });
+}
 
-        $('#domainform').on('submit', function(event) {
-            event.preventDefault();
+function getSearch() {
+    $('#domainform').on('submit', function(event) {
+        event.preventDefault();
 
-            var query = $('#s').val();
-            query = query.replace(/\s+/g, '');
-            $('#s').val('');
-            console.log(query);
+        var sQuery = $('#s').val();
+        sQuery = sQuery.replace(/\s+/g, '');
+        sQuery = sQuery.toLowerCase();
+        $('#s').val('');
 
-            getHartSearch(query);
-        });
+        getHartSearch(sQuery);
     });
 }
 
@@ -58,16 +62,10 @@ function getHartSearch(quer) {
     });
 
     request.done(function(data) {
-        // console.log(data.records)
         hArt = [];
         for (var i = 0; i < data.records.length; i++) {
             let artData = data.records[i];
-            // Object.keys(artData).forEach(function(key) {
-            //     if (artData[key] == null) {
-            //         delete artData[key];
-            //     }
-            // });
-            console.log('in here');
+
             hArt.push(artData);
         }
         console.log(hArt, "search");
@@ -81,7 +79,6 @@ function getHartSearch(quer) {
 }
 
 
-
 function getHArtDropdown(classif) {
     var request = $.ajax({
         url: url + "&classification=" + classif,
@@ -92,12 +89,7 @@ function getHArtDropdown(classif) {
         hArt = [];
         for (var i = 0; i < data.records.length; i++) {
             let artData = data.records[i];
-            // Object.keys(artData).forEach(function(key) {
-            //     if (artData[key] == null) {
-            //         delete artData[key];
-            //     }
-            // });
-            // console.log('in here');
+
             hArt.push(artData);
         }
         console.log(hArt, "buttons");
@@ -111,9 +103,6 @@ function getHArtDropdown(classif) {
 
 
 function addToContent() {
-    // artDiv.empty();
-    // infoDiv.empty();
-    artDiv.hide();
 
     for (var i = 0; i <= hArt.length; i++) {
 
@@ -122,51 +111,28 @@ function addToContent() {
 
         artImage.attr('src', hArt[i].primaryimageurl);
 
-        if(hArt[i].title){
-          title.text(hArt[i].title);
-        }
-        if(hArt[i].culture){
-          culture.text(hArt[i].culture);
-        }
-        if(hArt[i].period){
-          period.text(hArt[i].period);
-        }
-        if(hArt[i].medium){
-          medium.text(hArt[i].medium);
-        }
+        let p = i + 1;
 
-        // // var info = '<p>' + hArt[i].title + ' : ' + hArt[i].culture + '</p><p>' + hArt[i].period + '</p><p>' + hArt[i].medium + '</p>';
-        //
-        // if(hArt && Array.isArray(hArt) && hArt[i].title) {
-        //   infoDiv.append(createArtElement(hArt[i]));
-        // }
+        $("#position").text(p + " out of " + hArt.length);
+
+        if (hArt[i].title) {
+            title.text(hArt[i].title);
+        }
+        if (hArt[i].culture) {
+            culture.text(hArt[i].culture);
+        }
+        if (hArt[i].period) {
+            period.text(hArt[i].period);
+        }
+        if (hArt[i].medium) {
+            medium.text(hArt[i].medium);
+        }
 
         currentImg = i;
         break;
     }
-    artDiv.show();
+    artDiv.fadeIn();
 }
-
-// function createArtElement(artObj) {
-//   var str = '<p>' + artObj.title + '</p>';
-//
-//   if (artObj.culture) {
-//     str += '<p>' + artObj.culture + '</p>';
-//
-//   }
-//
-//   if (artObj.period) {
-//     console.log(artObj.period)
-//     str += '<p>' + artObj.period + '</p>'
-//   }
-//
-//   if (artObj.medium) {
-//     str += '<p>' + artObj.medium + '</p>'
-//   }
-//
-//   return $(str);
-// }
-
 
 
 function moveForward() {
@@ -184,25 +150,31 @@ function moveForward() {
 
             artImage.attr('src', hArt[i].primaryimageurl);
 
-            if(hArt[i].title){
-              title.text(hArt[i].title);
+            let p = i + 1;
+
+            $("#position").text(p + " out of " + hArt.length);
+
+            if (hArt[i].title) {
+                title.text(hArt[i].title);
             }
-            if(hArt[i].culture){
-              culture.text(hArt[i].culture);
+            if (hArt[i].culture) {
+                culture.text(hArt[i].culture);
             }
-            if(hArt[i].period){
-              period.text(hArt[i].period);
+            if (hArt[i].period) {
+                period.text(hArt[i].period);
             }
-            if(hArt[i].medium){
-              medium.text(hArt[i].medium);
+            if (hArt[i].medium) {
+                medium.text(hArt[i].medium);
             }
 
             currentImg = i;
 
             break;
         }
+        artDiv.fadeIn();
     });
 }
+
 
 function moveBack() {
     var back = $("#back");
@@ -218,22 +190,27 @@ function moveBack() {
 
             artImage.attr('src', hArt[i].primaryimageurl);
 
-            if(hArt[i].title){
-              title.text(hArt[i].title);
+            let p = i + 1;
+
+            $("#position").text(p + " out of " + hArt.length);
+
+            if (hArt[i].title) {
+                title.text(hArt[i].title);
             }
-            if(hArt[i].culture){
-              culture.text(hArt[i].culture);
+            if (hArt[i].culture) {
+                culture.text(hArt[i].culture);
             }
-            if(hArt[i].period){
-              period.text(hArt[i].period);
+            if (hArt[i].period) {
+                period.text(hArt[i].period);
             }
-            if(hArt[i].medium){
-              medium.text(hArt[i].medium);
+            if (hArt[i].medium) {
+                medium.text(hArt[i].medium);
             }
 
             currentImg = i;
 
             break;
         }
+        artDiv.fadeIn();
     });
 }
