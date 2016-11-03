@@ -6,9 +6,10 @@ $(function() {
   }
     makeButtons();
     getSearch();
-    moveForward();
-    moveBack();
-});
+    arrowListeners();
+    document.onkeydown = checkKey;
+
+  });
 
 /*********************GLOBALS***************************/
 var hArt = [];
@@ -60,6 +61,37 @@ function getSearch() {
         getHartSearch(sQuery);
     });
 }
+
+function checkKey(e) {
+
+    e = e || window.event;
+
+   if (e.keyCode == '37') {
+       console.log("LEFT");
+       moveBack();
+
+     }
+    else if (e.keyCode == '39') {
+       console.log("RIGHT");
+       moveForward();
+    }
+   }
+
+   function arrowListeners() {
+     var forward = $("#forward");
+
+     forward.on("click", function(event) {
+         event.preventDefault();
+         moveForward();
+     });
+
+     var back = $("#back");
+
+     back.on("click", function() {
+         event.preventDefault();
+         moveBack();
+         });
+   }
 
 function getHartSearch(quer) {
 
@@ -150,10 +182,6 @@ function addToContent() {
 
 function moveForward() {
     console.log("LISTENING");
-    var forward = $("#forward");
-
-    forward.on("click", function(event) {
-        event.preventDefault();
 
         for (var i = currentImg + 1; i < hArt.length + 1; i++) {
 
@@ -185,15 +213,10 @@ function moveForward() {
             break;
         }
         artDiv.fadeIn();
-    });
 }
 
 
 function moveBack() {
-    var back = $("#back");
-
-    back.on("click", function() {
-        event.preventDefault();
 
         for (var i = currentImg - 1; i < hArt.length + 1; i++) {
 
@@ -225,5 +248,4 @@ function moveBack() {
             break;
         }
         artDiv.fadeIn();
-    });
 }

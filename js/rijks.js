@@ -8,8 +8,10 @@ $(document).ready(function() {
     makeButtons();
     getRijksArtSearch();
     getRijksArtDropDown();
-    moveForward();
-    moveBack();
+
+    arrowListeners();
+    document.onkeydown = checkKey;
+
 });
 
 /*********************GLOBALS***************************/
@@ -37,6 +39,35 @@ function makeButtons() {
     }
 }
 
+function checkKey(e) {
+    e = e || window.event;
+
+   if (e.keyCode == '37') {
+       console.log("LEFT");
+       moveBack();
+
+     }
+    else if (e.keyCode == '39') {
+       console.log("RIGHT");
+       moveForward();
+    }
+   }
+
+   function arrowListeners() {
+     var forward = $("#forward");
+
+     forward.on("click", function(event) {
+         event.preventDefault();
+         moveForward();
+     });
+
+     var back = $("#back");
+
+     back.on("click", function() {
+         event.preventDefault();
+         moveBack();
+         });
+   }
 
 function getRijksArtDropDown() {
     $("#dropdown").on("click", function(event) {
@@ -118,8 +149,6 @@ function addToContent() {
 }
 
 function moveForward() {
-    forward.on("click", function() {
-        event.preventDefault();
 
         for (let i = currentImg + 1; i < rijksArt.length + 1; i++) {
 
@@ -146,15 +175,10 @@ function moveForward() {
         }
 
         artDiv.fadeIn();
-    });
    }
 
 
 function moveBack() {
-
-    back.on("click", function() {
-        // artDiv.hide();
-        event.preventDefault();
 
         for (var i = currentImg - 1; i < rijksArt.length + 1; i++) {
 
@@ -180,5 +204,4 @@ function moveBack() {
             break;
         }
         artDiv.fadeIn();
-    });
-}
+      }
