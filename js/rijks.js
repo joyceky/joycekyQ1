@@ -13,7 +13,6 @@ var rijksArt = [];
 var currentImg = 0;
 
 var artDiv = $("#art");
-var infoDiv = $("#info");
 var forward = $("#forward");
 var back = $("#back");
 var artImage = $('#art-image');
@@ -95,10 +94,6 @@ function addToContent() {
 
         console.log(rijksArt[i].webImage.url);
         artImage.attr('src', rijksArt[i].webImage.url);
-
-        let p = i + 1;
-
-        $("#position").text(p + " out of " + rijksArt.length);
 
         if (rijksArt[i].longTitle) {
             title.text(rijksArt[i].longTitle);

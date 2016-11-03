@@ -1,221 +1,126 @@
 "use strict";
-$(function() {
+
+$(document).ready(function() {
     makeButtons();
+    getRijksArtSearch();
+    getRijksArtDropDown();
     moveForward();
     moveBack();
 });
+
 /*********************GLOBALS***************************/
 var rijksArt = [];
 var currentImg = 0;
+
 var artDiv = $("#art");
-var infoDiv = $("#info");
+var forward = $("#forward");
+var back = $("#back");
 var artImage = $('#art-image');
+var artImage2 = $('#art-image2');
 var title = $('#title');
 var maker = $('#maker');
 
 
-var classi = ["Trees", "Still Life", "Paintings", "Dogs", "Jewelry", "Vessels", "Plaques", "Drawings",
-    "Multiples", "Paintings", "Sculpture", "Fragments", "Textile Arts", "Photographs",
-    "Archival Material", "Ritual Implements", "Tools and Equipment", "Medals and Medallions"
-];
+var classi = ["Still Life", "Portrait", "Minimal", "Jewelry", "Pottery", "Vessels", "Plaques", "Drawings",
+   "Paintings", "Sculpture", "Fragments", "Archival Material", "Tools and Equipment", "Architecture"];
+
 var classification;
-
-var query;
-
 /*******************************************************/
 
 function makeButtons() {
     for (let i = 0; i < classi.length; i++) {
         $("#dropdown").append('<li><a class="dropdown-item" href="#">' + classi[i] + '</a></li>');
     }
+}
 
+
+function getRijksArtDropDown() {
     $("#dropdown").on("click", function(event) {
         event.preventDefault();
+
         if (event.target !== event.currentTarget) {
-            query = event.target.innerText;
-            query = query.replace(/\s+/g, '');
-            query = query.toLowerCase();
+            classification = event.target.innerText;
+            callRijks(classification);
+        }
+    });
+}
 
 
-            var url = "https://www.rijksmuseum.nl/api/en/collection?q=" + query + "&key=PYC2DUue&format=json";
+function getRijksArtSearch() {
+    $('#domainform').on('submit', function(event) {
+        event.preventDefault();
+        var searchQuery = $('#s').val();
+        callRijks(searchQuery);
+    });
+}
 
-            var request = $.ajax({
-                url: url,
-                dataType: "json"
-            });
 
-            request.done(function(data) {
-                rijksArt = [];
+function callRijks(query) {
+    query = query.replace(/\s+/g, '');
+    $('#s').val('');
 
-                for (var i = 0; i < data.artObjects.length; i++) {
-                    let artData = data.artObjects[i];
+    var url = "https://www.rijksmuseum.nl/api/en/collection?q=" + query + "&key=PYC2DUue&format=json";
 
-                    if (artData.hasImage === false) {
-                        continue;
-                    }
-                    rijksArt.push(artData);
-                }
+    var request = $.ajax({
+        url: url,
+        dataType: "json"
+    });
 
-                console.log(rijksArt, "buttons");
-                addToContent();
-            });
+    request.done(function(data) {
+        console.log(data.artObjects);
+        if (data) {
+            rijksArt = [];
+        }
 
-            request.fail(function(jqXHR, textStatus) {
-                console.log("Request failed: " + textStatus);
-            });
+        for (var i = 0; i < data.artObjects.length; i++) {
+            if (data.artObjects[i].hasImage === false || data.artObjects[i].webImage === null) {
+                continue;
             }
-        });
-      }
+            rijksArt.push(data.artObjects[i]);
+        }
 
+        console.log(rijksArt, "ONLY IMAGES");
+        addToContent();
+    });
 
-
-
-
-
-            // getHArtDropdown();
-
-        // $('#domainform').on('submit', function(event) {
-        //     event.preventDefault();
-        //
-        //     query = $('#s').val();
-        //     query = query.replace(/\s+/g, '');
-        //     query = query.toLowerCase();
-        //     $('#s').val('');
-        //     console.log(query);
-        //
-        //     getRijksSearch();
-        // });
-    // });
-
-
-// function getRijksSearch() {
-//   var url = "https://www.rijksmuseum.nl/api/en/collection?q=" + query + "&key=PYC2DUue&format=json";
-//
-//     var request = $.ajax({
-//         url: url,
-//         dataType: "json"
-//     });
-//
-//     request.done(function(data) {
-//         // console.log(data.artObjects)
-//         rijksArt = [];
-//         for (var i = 0; i < data.artObjects.length; i++) {
-//
-//           let artData = data.artObjects[i];
-//
-//           if (artData.hasImage === false) {
-//               continue;
-//           }
-
-            // Object.keys(artData).forEach(function(key) {
-            //     if (artData[key] == null) {
-            //         delete artData[key];
-            //     }
-            // });
-//             console.log('in here');
-//             rijksArt.push(artData);
-//         }
-//         console.log(rijksArt, "search");
-//         addToContent();
-//     });
-//
-//
-//     request.fail(function(jqXHR, textStatus) {
-//         console.log("Request failed: " + textStatus);
-//     });
-// }
-
-
-
-// function getHArtDropdown() {
-//     var url = "https://www.rijksmuseum.nl/api/en/collection?q=" + query + "&key=PYC2DUue&format=json";
-//
-//     var request = $.ajax({
-//         url: url,
-//         dataType: "json"
-//     });
-//
-//     request.done(function(data) {
-//         rijksArt = [];
-//
-//         for (var i = 0; i < data.artObjects.length; i++) {
-//             let artData = data.artObjects[i];
-//
-//             if (artData.hasImage === false) {
-//                 continue;
-//             }
-//             rijksArt.push(artData);
-//         }
-//
-//         console.log(rijksArt, "buttons");
-//         addToContent();
-//     });
-//
-//     request.fail(function(jqXHR, textStatus) {
-//         console.log("Request failed: " + textStatus);
-//     });
-// }
+    request.fail(function(jqXHR, textStatus) {
+        console.log("Request failed: " + textStatus);
+    });
+}
 
 
 function addToContent() {
-    // artDiv.empty();
-    // infoDiv.empty();
-    artDiv.hide();
 
-    for (var i = 0; i <= rijksArt.length; i++) {
+    for (let i = 0; i <= rijksArt.length; i++) {
 
-        // var art = '<img class="art" src=' + rijksArt[i].primaryimageurl + '>';
-        // artDiv.append(art);
-
+        console.log(rijksArt[i].webImage.url);
         artImage.attr('src', rijksArt[i].webImage.url);
 
-        if(rijksArt[i].longTitle){
-          title.text(rijksArt[i].longTitle);
-        }
-        if(rijksArt[i].principalOrFirstMaker){
-          maker.text(rijksArt[i].principalOrFirstMaker);
-        }
+        let p = i + 1;
 
-        // // var info = '<p>' + rijksArt[i].title + ' : ' + rijksArt[i].culture + '</p><p>' + rijksArt[i].period + '</p><p>' + rijksArt[i].medium + '</p>';
-        //
-        // if(rijksArt && Array.isArray(rijksArt) && rijksArt[i].title) {
-        //   infoDiv.append(createArtElement(rijksArt[i]));
-        // }
+        artImage2.attr('src', rijksArt[p].webImage.url);
+
+        $("#position").text(p + " out of " + rijksArt.length);
+
+        if (rijksArt[i].longTitle) {
+            title.text(rijksArt[i].longTitle);
+        }
+        if (rijksArt[i].principalOrFirstMaker) {
+            maker.text(rijksArt[i].principalOrFirstMaker);
+        }
 
         currentImg = i;
         break;
     }
-    artDiv.show();
+    artDiv.fadeIn();
 }
 
-// function createArtElement(artObj) {
-//   var str = '<p>' + artObj.title + '</p>';
-//
-//   if (artObj.culture) {
-//     str += '<p>' + artObj.culture + '</p>';
-//
-//   }
-//
-//   if (artObj.period) {
-//     console.log(artObj.period)
-//     str += '<p>' + artObj.period + '</p>'
-//   }
-//
-//   if (artObj.medium) {
-//     str += '<p>' + artObj.medium + '</p>'
-//   }
-//
-//   return $(str);
-// }
 
 function moveForward() {
-    console.log("LISTENING");
-    var forward = $("#forward");
-
-    forward.on("click", function(event) {
+    forward.on("click", function() {
         event.preventDefault();
 
-        for (var i = currentImg + 1; i < rijksArt.length + 1; i++) {
+        for (let i = currentImg + 1; i < rijksArt.length + 1; i++) {
 
             if (i === rijksArt.length) {
                 i = 0;
@@ -223,24 +128,31 @@ function moveForward() {
 
             artImage.attr('src', rijksArt[i].webImage.url);
 
-            if(rijksArt[i].longTitle){
-              title.text(rijksArt[i].longTitle);
+            let p = i + 1;
+
+            $("#position").text(p + " out of " + rijksArt.length);
+
+            if (rijksArt[i].longTitle) {
+                title.text(rijksArt[i].longTitle);
             }
-            if(rijksArt[i].principalOrFirstMaker){
-              culture.text(rijksArt[i].principalOrFirstMaker);
+            if (rijksArt[i].principalOrFirstMaker) {
+                maker.text(rijksArt[i].principalOrFirstMaker);
             }
 
             currentImg = i;
 
             break;
         }
+        artDiv.fadeIn();
+
     });
 }
 
+
 function moveBack() {
-    var back = $("#back");
 
     back.on("click", function() {
+        // artDiv.hide();
         event.preventDefault();
 
         for (var i = currentImg - 1; i < rijksArt.length + 1; i++) {
@@ -251,16 +163,21 @@ function moveBack() {
 
             artImage.attr('src', rijksArt[i].webImage.url);
 
-            if(rijksArt[i].longTitle){
-              title.text(rijksArt[i].longTitle);
+            let p = i + 1;
+
+            $("#position").text(p + " out of " + rijksArt.length);
+
+            if (rijksArt[i].longTitle) {
+                title.text(rijksArt[i].longTitle);
             }
-            if(rijksArt[i].principalOrFirstMaker){
-              culture.text(rijksArt[i].principalOrFirstMaker);
+            if (rijksArt[i].principalOrFirstMaker) {
+                maker.text(rijksArt[i].principalOrFirstMaker);
             }
 
             currentImg = i;
 
             break;
         }
+        artDiv.fadeIn();
     });
 }

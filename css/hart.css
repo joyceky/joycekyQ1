@@ -17,7 +17,9 @@ button {
   color: rgb(29, 121, 99);
 }
 
-
+.dropdown {
+  outline: 2px
+}
 
 img {
   padding: 10px;

@@ -32,7 +32,7 @@
                     <li><a href="artOTD.html">Art of the Day</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse Museums <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu dropdown-menu">
                             <li><a href="hart.html">Harvard Art Museum</a></li>
                             <li><a href="rijks.html">Rijksmuseum</a></li>
                         </ul>
@@ -44,32 +44,38 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <div class="row">
-        <div class="col-l-12">
-            <div id="about">
-                <h1 id="aboutHeader">about OOMA.</h1>
-                <p>
-                    The Open Online Museum of Art is a student project by developer <a href="https://github.com/joyceky">Kyle Joyce</a>.
-                    <br> OOMA's purpose is to liberate our world's works of art from museum walls and make them available to everyone.
-                    <br> Thank you for visiting!
-                    <br>
-                    <br>
-                </p>
-                <h3>" When nations grow old, the Arts grow cold,</h3>
-                <h3> And Commerce settles on every tree. "</h3>
-                <h2>WILLIAM BLAKE, On Art and Artists</h2>
-                <br>
-                <br>
-                <br>
-                <h4>
-                  Collections generously provided by the Harvard Art Museum and the Rijksmuseum APIs.
-                </h4>
-
+    <div class="row row-centered">
+        <div class="col-l-12 col-centered">
+            <div>
+                <h1 class="ooma">art of the day.</h1>
+                <h2>Today's Piece</h2>
             </div>
         </div>
     </div>
 
     <div class="clearfix"></div>
+
+    <div class="row row-centered">
+      <div id="content" class="col-sm-12 col-lg-12 col-centered">
+        <div class="row">
+
+
+          <div id="art" class="col-xs-12 col-centered">
+            <img id="art-image" class="art">
+          </div>
+
+        </div><!-- row -->
+
+        <div class="row row-centered">
+          <div id="info" class="col-sm-10 col-lg-10 col-centered bg-special">
+            <br>
+            <p id="position"></p>
+            <p id="title"></p>
+            <p id="maker"></p>
+          </div>
+        </div>
+       </div>
+     </div>
 
     <div class="row">
         <div class="col-l-12" id="footerBg">
@@ -81,7 +87,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+    <script src="js/artOTD.js"></script>
 </body>
 
 </html>
