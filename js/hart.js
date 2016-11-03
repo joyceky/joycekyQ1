@@ -9,15 +9,20 @@ var hArt = [];
 var currentImg = 0;
 var artDiv = $("#art");
 var infoDiv = $("#info");
+var artImage = $('#art-image');
+var title = $('#title');
+var culture = $('#culture');
+var period = $('#period');
+var medium = $('#medium');
 
 var classi = ["any", "Coins", "Prints", "Books", "Jewelry", "Vessels", "Plaques", "Drawings",
     "Multiples", "Paintings", "Sculpture", "Fragments", "Textile Arts", "Photographs",
     "Archival Material", "Ritual Implements", "Tools and Equipment", "Medals and Medallions"
 ];
 var classification;
-var fields = "primaryimageurl,classification,period,title,medium,century,culture,department,division,description,technique,dated";
+var fields = "primaryimageurl,classification,period,title,medium,culture";
 
-var url = "https://g-ham.herokuapp.com/object?apikey=335c6710-9d5a-11e6-8ab4-ad600566c465&size=50&fields=" + fields + "&hasimage=1&sort=random";
+var url = "https://g-ham.herokuapp.com/object?apikey=335c6710-9d5a-11e6-8ab4-ad600566c465&size=10&hasimage=1&fields=" + fields + "&sort=random";
 
 /*******************************************************/
 
@@ -57,11 +62,12 @@ function getHartSearch(quer) {
         hArt = [];
         for (var i = 0; i < data.records.length; i++) {
             let artData = data.records[i];
-            Object.keys(artData).forEach(function(key) {
-                if (artData[key] == null) {
-                    delete artData[key];
-                }
-            });
+            // Object.keys(artData).forEach(function(key) {
+            //     if (artData[key] == null) {
+            //         delete artData[key];
+            //     }
+            // });
+            console.log('in here');
             hArt.push(artData);
         }
         console.log(hArt, "search");
@@ -75,25 +81,6 @@ function getHartSearch(quer) {
 }
 
 
-  function createArtElement(artObj) {
-    var str = '<p>' + artObj.title + '</p>';
-
-    if (artObj.culture) {
-      str += '<p>' + artObj.culture + '</p>';
-    }
-
-    if (artObj.period) {
-      console.log(artObj.period)
-      str += '<p>' + artObj.period + '</p>'
-    }
-
-    if (artObj.medium) {
-      str += '<p>' + artObj.medium + '</p>'
-    }
-
-    return $(str);
-  }
-
 
 function getHArtDropdown(classif) {
     var request = $.ajax({
@@ -105,11 +92,12 @@ function getHArtDropdown(classif) {
         hArt = [];
         for (var i = 0; i < data.records.length; i++) {
             let artData = data.records[i];
-            Object.keys(artData).forEach(function(key) {
-                if (artData[key] == null) {
-                    delete artData[key];
-                }
-            });
+            // Object.keys(artData).forEach(function(key) {
+            //     if (artData[key] == null) {
+            //         delete artData[key];
+            //     }
+            // });
+            // console.log('in here');
             hArt.push(artData);
         }
         console.log(hArt, "buttons");
@@ -123,33 +111,70 @@ function getHArtDropdown(classif) {
 
 
 function addToContent() {
-    artDiv.empty();
-    infoDiv.empty();
+    // artDiv.empty();
+    // infoDiv.empty();
+    artDiv.hide();
 
     for (var i = 0; i <= hArt.length; i++) {
 
-        var art = '<img class="art" src=' + hArt[i].primaryimageurl + '>';
-        artDiv.append(art);
+        // var art = '<img class="art" src=' + hArt[i].primaryimageurl + '>';
+        // artDiv.append(art);
 
-        // var info = '<p>' + hArt[i].title + ' : ' + hArt[i].culture + '</p><p>' + hArt[i].period + '</p><p>' + hArt[i].medium + '</p>';
+        artImage.attr('src', hArt[i].primaryimageurl);
 
-
-        if(hArt && Array.isArray(hArt) && hArt[i].title) {
-          infoDiv.append(createArtElement(hArt[i]));
+        if(hArt[i].title){
+          title.text(hArt[i].title);
+        }
+        if(hArt[i].culture){
+          culture.text(hArt[i].culture);
+        }
+        if(hArt[i].period){
+          period.text(hArt[i].period);
+        }
+        if(hArt[i].medium){
+          medium.text(hArt[i].medium);
         }
 
-        // infoDiv.append(info);
+        // // var info = '<p>' + hArt[i].title + ' : ' + hArt[i].culture + '</p><p>' + hArt[i].period + '</p><p>' + hArt[i].medium + '</p>';
+        //
+        // if(hArt && Array.isArray(hArt) && hArt[i].title) {
+        //   infoDiv.append(createArtElement(hArt[i]));
+        // }
 
         currentImg = i;
         break;
     }
+    artDiv.show();
 }
+
+// function createArtElement(artObj) {
+//   var str = '<p>' + artObj.title + '</p>';
+//
+//   if (artObj.culture) {
+//     str += '<p>' + artObj.culture + '</p>';
+//
+//   }
+//
+//   if (artObj.period) {
+//     console.log(artObj.period)
+//     str += '<p>' + artObj.period + '</p>'
+//   }
+//
+//   if (artObj.medium) {
+//     str += '<p>' + artObj.medium + '</p>'
+//   }
+//
+//   return $(str);
+// }
+
+
 
 function moveForward() {
     console.log("LISTENING");
     var forward = $("#forward");
 
-    forward.on("click", function() {
+    forward.on("click", function(event) {
+        event.preventDefault();
 
         for (var i = currentImg + 1; i < hArt.length + 1; i++) {
 
@@ -157,14 +182,19 @@ function moveForward() {
                 i = 0;
             }
 
-            artDiv.empty();
-            infoDiv.empty();
+            artImage.attr('src', hArt[i].primaryimageurl);
 
-            var art = '<img class="art" src=' + hArt[i].primaryimageurl + '>';
-            artDiv.append(art);
-
-            if(hArt && Array.isArray(hArt) && hArt[i].title) {
-              infoDiv.append(createArtElement(hArt[i]));
+            if(hArt[i].title){
+              title.text(hArt[i].title);
+            }
+            if(hArt[i].culture){
+              culture.text(hArt[i].culture);
+            }
+            if(hArt[i].period){
+              period.text(hArt[i].period);
+            }
+            if(hArt[i].medium){
+              medium.text(hArt[i].medium);
             }
 
             currentImg = i;
@@ -178,6 +208,7 @@ function moveBack() {
     var back = $("#back");
 
     back.on("click", function() {
+        event.preventDefault();
 
         for (var i = currentImg - 1; i < hArt.length + 1; i++) {
 
@@ -185,14 +216,19 @@ function moveBack() {
                 i = hArt.length - 1;
             }
 
-            artDiv.empty();
-            infoDiv.empty();
+            artImage.attr('src', hArt[i].primaryimageurl);
 
-            var art = '<img class="art" src=' + hArt[i].primaryimageurl + '>';
-            artDiv.append(art);
-
-            if(hArt && Array.isArray(hArt) && hArt[i].title) {
-              infoDiv.append(createArtElement(hArt[i]));
+            if(hArt[i].title){
+              title.text(hArt[i].title);
+            }
+            if(hArt[i].culture){
+              culture.text(hArt[i].culture);
+            }
+            if(hArt[i].period){
+              period.text(hArt[i].period);
+            }
+            if(hArt[i].medium){
+              medium.text(hArt[i].medium);
             }
 
             currentImg = i;

@@ -139,29 +139,69 @@ h1 {
 }
 
 /*********************ABOUT PAGE*********************/
+/*************************MUSEUM*********************/
+#buttons {
+  display: inline;
+  padding: 0;
+  margin: 0;
+}
+
+.row-centered {
+    text-align:center;
+}
+
+.col-centered {
+    display:inline-block;
+    float:none;
+}
+
+.dropdown-toggle {
+  height: 50px;
+  width: 200px;
+  font-size: 20px;
+}
+
+
+/*************************MUSEUM*********************/
 
 
 #searchfield {
-  background: rgb(145, 154, 237);
+  height: 5vh;
+}
+
+#s {
+  height: 50px;
+  width: 200px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 300;
 }
 
 #content {
-    width: 80vw;
+    width: 100vw;
 }
 
 #art {
-  width: 65vw;
+  width: 83vw;
   height: 80vh;
   overflow: scroll;
 }
 
 .arrowBtn {
   height: 80vh;
+  padding-top: 40vh;
 }
 
 #info {
-  height: 15vh;
+  height: 18vh;
   width: 70vw;
+  overflow: scroll;
+  border-radius: 5px;
+  border: 2px rgb(169, 171, 181) solid;
+  font-size: 18px;
+  line-height: 20px;
+  padding-top: 10px;
+  padding-bottom: 0;
 }
 
 .art {
