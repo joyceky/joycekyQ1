@@ -117,7 +117,7 @@ h2 {
 /*********************LANDING PAGE*********************/
 
 .bg-special {
-  background-color:
+  background-color: white;
 }
 
 
@@ -162,6 +162,11 @@ h2 {
 button {
   background: rgb(228, 223, 254);
   color: rgb(121, 119, 124);
+}
+
+.museumTag {
+  color: rgb(133, 83, 226);
+  font-size: 24px;
 }
 
 .row-centered {

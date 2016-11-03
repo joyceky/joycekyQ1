@@ -1,5 +1,9 @@
 "use strict";
 $(function() {
+  if(storedHArt) {
+    hArt = storedHArt;
+    addToContent();
+  }
     makeButtons();
     getSearch();
     moveForward();
@@ -17,10 +21,13 @@ var culture = $('#culture');
 var period = $('#period');
 var medium = $('#medium');
 
+var storedHArt = JSON.parse(localStorage.getItem("storedHArt"));
+
 var classi = ["any", "Coins", "Prints", "Books", "Jewelry", "Vessels", "Plaques", "Drawings",
     "Multiples", "Paintings", "Sculpture", "Fragments", "Textile Arts", "Photographs",
     "Archival Material", "Ritual Implements", "Tools and Equipment", "Medals and Medallions"
 ];
+
 var classification;
 var fields = "primaryimageurl,classification,period,title,medium,culture";
 
@@ -62,13 +69,18 @@ function getHartSearch(quer) {
     });
 
     request.done(function(data) {
-        hArt = [];
+      if (data) {
+          hArt = [];
+          localStorage.setItem("s", JSON.stringify("[]"));
+      }
+
         for (var i = 0; i < data.records.length; i++) {
             let artData = data.records[i];
 
             hArt.push(artData);
         }
         console.log(hArt, "search");
+        localStorage.setItem("storedHArt", JSON.stringify(hArt));
         addToContent();
     });
 
@@ -93,6 +105,7 @@ function getHArtDropdown(classif) {
             hArt.push(artData);
         }
         console.log(hArt, "buttons");
+        localStorage.setItem("storedHArt", JSON.stringify(hArt));
         addToContent();
     });
 

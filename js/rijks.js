@@ -1,6 +1,10 @@
 "use strict";
 
 $(document).ready(function() {
+  if(storedRijksArt) {
+    rijksArt = storedRijksArt;
+    addToContent();
+  }
     makeButtons();
     getRijksArtSearch();
     getRijksArtDropDown();
@@ -19,6 +23,7 @@ var artImage = $('#art-image');
 var title = $('#title');
 var maker = $('#maker');
 
+var storedRijksArt = JSON.parse(localStorage.getItem("storedRijksArt"));
 
 var classi = ["Still Life", "Portrait", "Minimal", "Jewelry", "Pottery", "Vessels", "Plaques", "Drawings",
    "Paintings", "Sculpture", "Fragments", "Archival Material", "Tools and Equipment", "Architecture"];
@@ -69,6 +74,7 @@ function callRijks(query) {
         console.log(data.artObjects);
         if (data) {
             rijksArt = [];
+            localStorage.setItem("storedRijksArt", JSON.stringify("[]"));
         }
 
         for (var i = 0; i < data.artObjects.length; i++) {
@@ -79,6 +85,9 @@ function callRijks(query) {
         }
 
         console.log(rijksArt, "ONLY IMAGES");
+        localStorage.setItem("storedRijksArt", JSON.stringify(rijksArt));
+        console.log(JSON.parse(localStorage.getItem("storedRijksArt")), "STORED LOCALLY");
+
         addToContent();
     });
 
