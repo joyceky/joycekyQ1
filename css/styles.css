@@ -193,7 +193,7 @@ h1 {
 }
 
 #info {
-  height: 18vh;
+  height: 100px;
   width: 70vw;
   overflow: scroll;
   border-radius: 5px;

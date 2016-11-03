@@ -1,7 +1,9 @@
 "use strict";
 
 $(document).ready(function() {
-    getRijksArt();
+    makeButtons();
+    getRijksArtSearch();
+    getRijksArtDropDown();
     moveForward();
     moveBack();
 });
@@ -18,20 +20,52 @@ var artImage = $('#art-image');
 var title = $('#title');
 var maker = $('#maker');
 
+
+var classi = ["Trees", "Still Life", "Paintings", "Dogs", "Jewelry", "Vessels", "Plaques", "Drawings",
+    "Multiples", "Paintings", "Sculpture", "Fragments", "Textile Arts", "Photographs",
+    "Archival Material", "Ritual Implements", "Tools and Equipment", "Medals and Medallions"
+];
+
 var art;
 var info;
+var classification;
 /*******************************************************/
 
 // function populatePage {
 //
 // }
 
-function getRijksArt() {
+function makeButtons() {
+    for (let i = 0; i < classi.length; i++) {
+        $("#dropdown").append('<li><a class="dropdown-item" href="#">' + classi[i] + '</a></li>');
+    }
+  }
 
-    $('#domainform').on('submit', function(event) {
-        event.preventDefault();
+function getRijksArtDropDown() {
+  $("#dropdown").on("click", function(event) {
+      event.preventDefault();
 
-        var query = $('#s').val();
+      if (event.target !== event.currentTarget) {
+          classification = event.target.innerText;
+          callRijks(classification);
+      }
+   });
+}
+
+function getRijksArtSearch() {
+  $('#domainform').on('submit', function(event) {
+      event.preventDefault();
+      var searchQuery = $('#s').val();
+      callRijks(searchQuery);
+ });
+}
+
+function callRijks(query) {
+    // $('#domainform').on('submit', function(event) {
+    //     event.preventDefault();
+
+        // query = $('#s').val();
+
         query = query.replace(/\s+/g, '');
         $('#s').val('');
 
@@ -46,7 +80,7 @@ function getRijksArt() {
             console.log(data.artObjects);
             rijksArt = [];
             for (var i = 0; i < data.artObjects.length; i++) {
-                if (data.artObjects[i].hasImage === false) {
+                if (data.artObjects[i].hasImage === false || data.artObjects[i].webImage === null) {
                     continue;
                 }
                 rijksArt.push(data.artObjects[i]);
@@ -59,7 +93,7 @@ function getRijksArt() {
         request.fail(function(jqXHR, textStatus) {
             console.log("Request failed: " + textStatus);
         });
-    });
+    // });
 }
 
 function addToContent() {
@@ -93,10 +127,11 @@ function addToContent() {
 
 function moveForward() {
     forward.on("click", function() {
+      event.preventDefault();
 
         // artDiv.empty();
         // infoDiv.empty();
-        artDiv.hide();
+        // artDiv.hide();
 
         for (let i = currentImg + 1; i < rijksArt.length + 1; i++) {
 
@@ -158,7 +193,8 @@ function moveForward() {
 function moveBack() {
 
     back.on("click", function() {
-        artDiv.hide();
+        // artDiv.hide();
+        event.preventDefault();
 
         for (var i = currentImg - 1; i < rijksArt.length + 1; i++) {
 
