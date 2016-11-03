@@ -6,6 +6,10 @@ body {
   background: #ffffff;
 }
 
+.rowWithFullWidth {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
 /*********************NAVIGATION*********************/
 .navbar {
   background: rgb(228, 223, 254);
@@ -16,6 +20,10 @@ body {
     font-size: 20px;
     font-weight: bold;
 }
+
+/*#logo {
+  height: 40px;
+}*/
 
 /*********************NAVIGATION*********************/
 
