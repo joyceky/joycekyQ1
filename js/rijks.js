@@ -9,10 +9,15 @@ $(document).ready(function() {
 /*********************GLOBALS***************************/
 var rijksArt = [];
 var currentImg = 0;
+
 var artDiv = $("#art");
 var infoDiv = $("#info");
 var forward = $("#forward");
 var back = $("#back");
+var artImage = $('#art-image');
+var title = $('#title');
+var maker = $('#maker');
+
 var art;
 var info;
 /*******************************************************/
@@ -38,7 +43,7 @@ function getRijksArt() {
         });
 
         request.done(function(data) {
-            console.log(data.artObjects)
+            console.log(data.artObjects);
             rijksArt = [];
             for (var i = 0; i < data.artObjects.length; i++) {
                 if (data.artObjects[i].hasImage === false) {
@@ -58,27 +63,40 @@ function getRijksArt() {
 }
 
 function addToContent() {
-    artDiv.empty();
-    infoDiv.empty();
+    artDiv.hide();
 
     for (let i = 0; i <= rijksArt.length; i++) {
 
-        var art = '<img class="art" src=\"' + rijksArt[i].webImage.url + '\">';
-        artDiv.append(art);
+      console.log(rijksArt[i].webImage.url);
+      artImage.attr('src', rijksArt[i].webImage.url);
 
-        var info = '<p>' + rijksArt[i].longTitle + '</p><p>' + rijksArt[i].principalOrFirstMaker + '</p>';
-        infoDiv.append(info);
+      if(rijksArt[i].longTitle){
+        title.text(rijksArt[i].longTitle);
+      }
+      if(rijksArt[i].principalOrFirstMaker){
+        maker.text(rijksArt[i].principalOrFirstMaker);
+      }
+
+        //
+        //
+        // var art = '<img class="art" src=\"' + rijksArt[i].webImage.url + '\">';
+        // artDiv.append(art);
+        //
+        // var info = '<p>' + rijksArt[i].longTitle + '</p><p>' + rijksArt[i].principalOrFirstMaker + '</p>';
+        // infoDiv.append(info);
 
         currentImg = i;
         break;
     }
+    artDiv.fadeIn();
 }
 
 function moveForward() {
     forward.on("click", function() {
 
-        artDiv.empty();
-        infoDiv.empty();
+        // artDiv.empty();
+        // infoDiv.empty();
+        artDiv.hide();
 
         for (let i = currentImg + 1; i < rijksArt.length + 1; i++) {
 
@@ -86,15 +104,27 @@ function moveForward() {
                 i = 0;
             }
 
-            art = '<img class="art" src=\"' + rijksArt[i].webImage.url + '\">';
-            artDiv.append(art);
-            info = '<p>' + rijksArt[i].longTitle + '</p><p>' + rijksArt[i].principalOrFirstMaker + '</p>';
-            infoDiv.append(info);
+
+            artImage.attr('src', rijksArt[i].webImage.url);
+
+            if(rijksArt[i].longTitle){
+              title.text(rijksArt[i].longTitle);
+            }
+            if(rijksArt[i].principalOrFirstMaker){
+              maker.text(rijksArt[i].principalOrFirstMaker);
+            }
+
+            // art = '<img class="art" src=\"' + rijksArt[i].webImage.url + '\">';
+            // artDiv.append(art);
+            // info = '<p>' + rijksArt[i].longTitle + '</p><p>' + rijksArt[i].principalOrFirstMaker + '</p>';
+            // infoDiv.append(info);
 
             currentImg = i;
 
             break;
         }
+        artDiv.fadeIn();
+
     });
 }
 
@@ -128,6 +158,7 @@ function moveForward() {
 function moveBack() {
 
     back.on("click", function() {
+        artDiv.hide();
 
         for (var i = currentImg - 1; i < rijksArt.length + 1; i++) {
 
@@ -135,17 +166,31 @@ function moveBack() {
                 i = rijksArt.length - 1;
             }
 
-            artDiv.empty();
-            infoDiv.empty();
+            // artDiv.empty();
+            // infoDiv.empty();
 
-            art = '<img class="art" src=\"' + rijksArt[i].webImage.url + '\">';
-            artDiv.append(art);
-            info = '<p>' + rijksArt[i].longTitle + '</p><p>' + rijksArt[i].principalOrFirstMaker + '</p>';
-            infoDiv.append(info);
+            artImage.attr('src', rijksArt[i].webImage.url);
+
+            if(rijksArt[i].longTitle){
+              title.text(rijksArt[i].longTitle);
+            }
+            if(rijksArt[i].principalOrFirstMaker){
+              maker.text(rijksArt[i].principalOrFirstMaker);
+            }
+
+
+
+
+
+            // art = '<img class="art" src=\"' + rijksArt[i].webImage.url + '\">';
+            // artDiv.append(art);
+            // info = '<p>' + rijksArt[i].longTitle + '</p><p>' + rijksArt[i].principalOrFirstMaker + '</p>';
+            // infoDiv.append(info);
 
             currentImg = i;
 
             break;
         }
+        artDiv.fadeIn();
     });
 }
