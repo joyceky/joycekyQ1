@@ -141,7 +141,7 @@ function addToContent() {
         if (rijksArt[i].principalOrFirstMaker) {
             maker.text(rijksArt[i].principalOrFirstMaker);
         }
-
+        
         currentImg = i;
         break;
     }

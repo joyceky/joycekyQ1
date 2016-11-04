@@ -21,6 +21,7 @@ body {
     font-weight: bold;
 }
 
+
 /*********************NAVIGATION*********************/
 
 
@@ -40,7 +41,7 @@ h2 {
 #welcome {
     font-size: 70px;
     color: rgb(133, 83, 226);
-    margin-left: 20vw;
+    margin-right: 20vw;
 }
 
 .ooma {
@@ -63,7 +64,7 @@ h2 {
 }
 
 #museums {
-    height: 450px;
+    height: 480px;
     text-align: center;
     margin: 0 auto;
 }
@@ -78,8 +79,7 @@ h2 {
 }
 
 .museumDisplay img {
-    height: 300px;
-    width: 500px;
+    height: 320px;
     border-radius: 5px;
 }
 
@@ -89,6 +89,13 @@ h2 {
     text-align: center;
     margin: 0 auto;
     color: rgb(133, 83, 226);
+}
+
+.shadow {
+    box-shadow: 5px 6px 13px 2px #B3AAD4;
+    -webkit-box-shadow: 5px 6px 13px 2px #B3AAD4;
+    -moz-box-shadow: 5px 6px 13px 2px #B3AAD4;
+    -o-box-shadow: 5px 6px 13px 2px #B3AAD4;
 }
 
 #mail {
@@ -118,10 +125,6 @@ h2 {
 
 
 /*********************LANDING PAGE*********************/
-
-.bg-special {
-    background-color: white;
-}
 
 
 /*********************ABOUT PAGE*********************/
@@ -239,6 +242,11 @@ button {
 
 #content p {
     color: rgb(121, 119, 124);
+}
+
+.quote {
+    color: rgb(121, 119, 124);
+    font-size: 22px;
 }
 
 
