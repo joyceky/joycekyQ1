@@ -20,14 +20,14 @@ var nameA = $('#nameA');
 var originName = $('#originName');
 var bday = $('#birthday');
 var bio = $('#bio');
+var wiki = $("#wikiLink");
 
 
 
 
 var storedRijksArt = JSON.parse(localStorage.getItem("storedRijksArt"));
 
-var classi = ["Rembrandt", "Portrait", "Minimal", "Jewelry", "Pottery", "Vessels", "Plaques", "Drawings",
-   "Paintings", "Sculpture", "Fragments", "Archival Material", "Tools and Equipment", "Architecture"];
+var classi = ["Rembrandt", "Michelangelo", "Raphael", "Titian"];
 
 var classification;
 
@@ -91,14 +91,24 @@ function getWikiSearch() {
           console.log(data);
           artImage.attr('src', data.image);
 
+          if(data.artistName) {
           nameA.text(data.artistName);
+        }
+          if(data.OriginalArtistName) {
           originName.text(data.OriginalArtistName);
+        }
+          if(data.birthDayAsString && data.deathDayAsString) {
           bday.text(data.birthDayAsString + " to " + data.deathDayAsString);
+        }
+          if(data.biography) {
           bio.text(data.biography);
-
-          $("#artistInfo").append("<a href=" + data.wikipediaUrl + ">Further Infomation</a>");
-
+        }
+          if(data.wikipediaUrl) {
+          wiki.attr("src", data.wikipediaUrl);
+          wiki.text("Further Information")
+        }
       });
+
 
       request.fail(function(jqXHR, textStatus) {
           console.log("Request failed: " + textStatus);
