@@ -2,6 +2,7 @@
 
 
 $(document).ready(function() {
+  // loginWiki();
   makeButtons();
   getWikiSearch();
   getWikiDropDown();
@@ -41,23 +42,23 @@ function makeButtons() {
     }
 }
 
-// function loginWiki() {
-//     var loginUrl = "http://www.wikiart.org/en/Api/2/login?accessCode=26a6ea6e0a724a95&secretCode=bcfbca365657b9df";
-//
-//     var request = $.ajax({
-//             url: loginUrl,
-//             dataType: "json"
-//     });
-//
-//     request.done(function(data) {
-//         console.log(data);
-//         callWiki();
-//     });
-//
-//     request.fail(function(jqXHR, textStatus) {
-//         console.log("Request failed: " + textStatus);
-//     });
-//   }
+function loginWiki() {
+    var loginUrl = "https://g-wikiart.herokuapp.com/en/Api/2/login?accessCode=837b1a644925467d&secretCode=b09303415adeea33";
+
+    var request = $.ajax({
+            url: loginUrl,
+            dataType: "json"
+    });
+
+    request.done(function(data) {
+        console.log(data);
+        callWiki();
+    });
+
+    request.fail(function(jqXHR, textStatus) {
+        console.log("Request failed: " + textStatus);
+    });
+  }
 
 
 function getWikiDropDown() {
@@ -81,7 +82,7 @@ function getWikiSearch() {
 }
 
   function callWiki(query) {
-     var url = "http://www.wikiart.org/en/" + query + "?json=2";
+     var url = "https://g-wikiart.herokuapp.com/en/" + query + "?json=2";
       var request = $.ajax({
               url: url,
               dataType: "json"
@@ -105,7 +106,7 @@ function getWikiSearch() {
         }
           if(data.wikipediaUrl) {
           wiki.attr("src", data.wikipediaUrl);
-          wiki.text("Further Information")
+          wiki.text("Further Information");
         }
       });
 
