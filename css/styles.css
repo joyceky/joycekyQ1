@@ -1,18 +1,18 @@
 body {
-  font-family: "Josefin Sans";
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  background: #ffffff;
+    font-family: "Josefin Sans";
+    background: #ffffff;
 }
 
 .rowWithFullWidth {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    margin-left: 0;
+    margin-right: 0;
 }
+
+
 /*********************NAVIGATION*********************/
+
 .navbar {
-  background: rgb(228, 223, 254);
+    background: rgb(228, 223, 254);
 }
 
 .nav.navbar-nav.navbar-right li a {
@@ -21,84 +21,79 @@ body {
     font-weight: bold;
 }
 
-/*#logo {
-  height: 40px;
-}*/
-
 /*********************NAVIGATION*********************/
+
 
 /*********************LANDING PAGE*********************/
 
 h1 {
-  font-family: "Abril Fatface";
+    font-family: "Abril Fatface";
 }
 
 h2 {
-  padding: 10px;
-  font-size: 28px;
-  font-weight: 200;
-  color: rgb(121, 119, 124);
+    padding: 10px;
+    font-size: 28px;
+    font-weight: 200;
+    color: rgb(121, 119, 124);
 }
 
 #welcome {
-  font-size: 70px;
-  color: rgb(133, 83, 226);
-  margin-left: 20vw;
+    font-size: 70px;
+    color: rgb(133, 83, 226);
+    margin-left: 20vw;
 }
 
 .ooma {
-  color: rgb(83, 83, 98);
-  font-size: 40px;
-  text-align: center;
+    color: rgb(83, 83, 98);
+    font-size: 40px;
+    text-align: center;
 }
 
 .divider {
-  width: 100vw;
-  opacity: 0.25;
-  margin: 8vh 0;
+    width: 100vw;
+    opacity: 0.25;
+    margin: 8vh 0;
 }
 
-
 #explore {
-  font-family: "Josefin Sans";
-  font-size: 55px;
-  font-weight: 500;
-  color: rgb(83, 83, 98);
+    font-family: "Josefin Sans";
+    font-size: 55px;
+    font-weight: 500;
+    color: rgb(83, 83, 98);
 }
 
 #museums {
-  height: 450px;
-  text-align: center;
-  margin: 0 auto;
+    height: 450px;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .museumDisplay {
-  height: 40vh;
-  width: 50vw;
-  display: inline-block;
-  font-family: "Abril Fatface";
-  font-size: 40px;
-  color: rgb(238, 77, 55);
+    height: 40vh;
+    width: 50vw;
+    display: inline-block;
+    font-family: "Abril Fatface";
+    font-size: 40px;
+    color: rgb(238, 77, 55);
 }
 
 .museumDisplay img {
-  height: 300px;
-  width: 500px;
-  border-radius: 5px;
+    height: 300px;
+    width: 500px;
+    border-radius: 5px;
 }
 
 #contactDiv {
-  height: 200px;
-  width: 100vh;
-  text-align: center;
-  margin: 0 auto;
-  color: rgb(133, 83, 226);
+    height: 200px;
+    width: 100vh;
+    text-align: center;
+    margin: 0 auto;
+    color: rgb(133, 83, 226);
 }
 
-
 #mail {
-  color: rgb(238, 77, 55);
-  font-size: 40px;
+    color: rgb(238, 77, 55);
+    font-size: 40px;
 }
 
 .glyphicon {
@@ -107,106 +102,108 @@ h2 {
     padding: 0 10px;
 }
 
-
 #footer {
-  height: 80px;
-  background: rgb(228, 223, 254);
+    height: 80px;
+    background: rgb(228, 223, 254);
 }
 
 #footer p {
-  padding: 0 50px;
-  font-size: 20px;
+    padding: 0 50px;
+    font-size: 20px;
 }
 
 #footer a {
-  color: rgb(238, 77, 55);
+    color: rgb(238, 77, 55);
 }
+
 
 /*********************LANDING PAGE*********************/
 
 .bg-special {
-  background-color: white;
+    background-color: white;
 }
 
 
 /*********************ABOUT PAGE*********************/
 
 #about {
-  height: 80vh;
-  width: 100vw;
-  text-align: center;
-  color: rgb(133, 83, 226);
+    height: 80vh;
+    width: 100vw;
+    text-align: center;
+    color: rgb(133, 83, 226);
 }
 
 #aboutHeader {
-  font-size: 70px;
-  color: rgb(133, 83, 226);
-  padding: 4vh 0;
+    font-size: 70px;
+    color: rgb(133, 83, 226);
+    padding: 4vh 0;
 }
 
 #about p {
-  font-size: 25px;
-  color: rgb(83, 83, 98);
-  line-height: 50px;
+    font-size: 25px;
+    color: rgb(83, 83, 98);
+    line-height: 50px;
 }
 
 #about a {
-  color: rgb(238, 77, 55);
+    color: rgb(238, 77, 55);
 }
 
 #about h4 {
-  font-size: 15px;
-  color: rgb(121, 119, 124);
+    font-size: 15px;
+    color: rgb(121, 119, 124);
 }
 
+
 /*********************ABOUT PAGE*********************/
+
+
 /*************************MUSEUM*********************/
+
 #buttons {
-  display: inline;
-  padding: 0;
-  margin: 0;
+    display: inline;
+    padding: 0;
+    margin: 0;
 }
 
 button {
-  background: rgb(228, 223, 254);
-  color: rgb(121, 119, 124);
+    background: rgb(228, 223, 254);
+    color: rgb(121, 119, 124);
 }
 
 .museumTag {
-  color: rgb(133, 83, 226);
-  font-size: 24px;
+    color: rgb(133, 83, 226);
+    font-size: 24px;
 }
 
 .row-centered {
-    text-align:center;
+    text-align: center;
 }
 
 .col-centered {
-    display:inline-block;
-    float:none;
+    display: inline-block;
+    float: none;
 }
 
 .dropdown-toggle {
-  height: 60px;
-  width: 270px;
-  font-size: 20px;
-
-
+    height: 60px;
+    width: 270px;
+    font-size: 20px;
 }
 
 #searchfield {
-  height: 5vh;
-  padding-top: 10px;
+    height: 5vh;
+    padding-top: 10px;
 }
 
 #s {
-  text-align: center;
-  height: 60px;
-  width: 270px;
-  border-radius: 5px;
-  font-size: 20px;
-  font-weight: 200;
-  color: rgb(121, 119, 124);
+    text-align: center;
+    height: 60px;
+    width: 270px;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 200;
+    color: rgb(121, 119, 124);
 }
 
 #content {
@@ -215,35 +212,34 @@ button {
 }
 
 #art {
-  width: 83vw;
-  height: 80vh;
-  overflow: scroll;
-  margin-bottom: 30px;
+    width: 83vw;
+    height: 80vh;
+    overflow: scroll;
+    margin-bottom: 30px;
 }
 
 .arrowBtn {
-  height: 80vh;
-  padding-top: 40vh;
+    height: 80vh;
+    padding-top: 40vh;
 }
 
 #info {
-  height: 140px;
-  width: 70vw;
-  overflow: scroll;
-  border-radius: 5px;
-  border: 2px rgb(169, 171, 181) solid;
-  font-size: 18px;
-  line-height: 20px;
+    height: 140px;
+    width: 70vw;
+    overflow: scroll;
+    border-radius: 5px;
+    border: 2px rgb(169, 171, 181) solid;
+    font-size: 18px;
+    line-height: 20px;
 }
-
 
 .art {
     height: 80vh;
-
 }
 
 #content p {
-  color: rgb(121, 119, 124);
+    color: rgb(121, 119, 124);
 }
+
 
 /*************************MUSEUM*********************/

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
 
     <!-- Stylesheets -->
@@ -12,114 +13,113 @@
     <link rel="shortcut icon" href="img/favicon.ico">
 
     <title>OOMA</title>
-  </head>
+</head>
 
-  <body>
+<body>
 
     <nav class="navbar navbar-default">
-      <div class="container-fluid">
+        <div class="container-fluid">
 
-        <div class="navbar-header">
-          <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button> -->
-          <img id="logo" class="navbar-brand" src="img/logo.png">
-          <a class="navbar-brand" href="index.html">OOMA</a>
+            <div class="navbar-header">
+
+                <img id="logo" class="navbar-brand" src="img/logo.png">
+                <a class="navbar-brand" href="index.html">OOMA</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="artOTD.html">Art of the Day</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse Museums <span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-menu -right">
+                            <li><a href="hart.html">Harvard Art Museum</a></li>
+                            <li><a href="rijks.html">Rijksmuseum</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="about.html">About</a></li>
-            <li><a href="artOTD.html">Art of the Day</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse Museums <span class="caret"></span></a>
-              <ul class="dropdown-menu dropdown-menu -right">
-                <li><a href="hart.html">Harvard Art Museum</a></li>
-                <li><a href="rijks.html">Rijksmuseum</a></li>
-              </ul>
-            </li>
-          </ul>
-
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
+        <!-- /.container-fluid -->
     </nav>
 
     <div class="row">
-      <div class="col-l-12">
-        <div>
-          <h1 id="welcome">welcome to OOMA.</h1>
-            <h1 class="ooma">the Open Online Museum of Art</h1>
+        <div class="col-l-12">
+            <div>
+                <h1 id="welcome">welcome to OOMA.</h1>
+                <h1 class="ooma">the Open Online Museum of Art</h1>
+            </div>
         </div>
-      </div>
     </div>
 
     <div class="row rowWithFullWidth">
-      <div class="col-l-12" >
-        <img class="divider" src="img/divider.png">
-      </div>
+        <div class="col-l-12">
+            <img class="divider" src="img/divider.png">
+        </div>
     </div>
-
-    <div class="clearfix"></div>
 
     <div class="row">
-      <div class="col-l-12" id="museums">
-        <div>
-          <h1 id="explore">explore collections from</h1>
-          <div id="hDisplay" class="museumDisplay">
-            Harvard Art Museum
-            <div>
-              <a href="hart.html"><img title="Click to view collections" src="img/harvardArt.png"></a>
-            </div>
-          </div>
-          <div id="rDisplay" class="museumDisplay">
-            Rijksmuseum
-            <div>
-              <a href="rijks.html"><img title="Click to view collections" src="img/rijskmuseum.png"></a>
-            </div>
-          </div>
-          <div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="clearfix"></div>
+        <div class="col-l-12" id="museums">
+            <div>
+                <h1 id="explore">explore collections from</h1>
+                <div id="hDisplay" class="museumDisplay">
+                    Harvard Art Museum
+                    <div>
+                        <a href="hart.html"><img title="Click to view collections" onload="fadeIn(this)" src="img/harvardArt.png" style="display:none"></a>
+                    </div>
+                </div>
+
+                <div id="rDisplay" class="museumDisplay">
+                    Rijksmuseum
+                    <div>
+                        <a href="rijks.html"><img title="Click to view collections" onload="fadeIn(this)" src="img/rijskmuseum.png" style="display:none"></a>
+                    </div>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="row rowWithFullWidth">
-      <div class="col-l-12" >
-        <img class="divider" src="img/divider.png">
-      </div>
-    </div>
-
-    <div class="clearfix"></div>
-
-    <div class="row" >
-      <div class="col-l-12" id="contactDiv">
-        <div>
-          <h1>OOMA is growing!</h1>
-            <h3>Know of an art API you'd like added to the Open Museum?</h3>
-            <i class="glyphicon glyphicon-envelope"></i><a id="mail" href="mailto:contactooma@gmail.com">Get in touch</a>
-
+        <div class="col-l-12">
+            <img class="divider" src="img/divider.png">
         </div>
-      </div>
     </div>
 
     <div class="row">
-      <div class="col-l-12" id="footerBg">
-        <div id="footer">
-            <p class="text-muted">Designed by Kyle Joyce<br><a href="https://github.com/joyceky">joyceky on Github</a></p>
+        <div class="col-l-12" id="contactDiv">
+            <div>
+                <h1>OOMA is growing!</h1>
+                <h3>Know of an art API you'd like added to the Open Museum?</h3>
+                <i class="glyphicon glyphicon-envelope"></i><a id="mail" href="mailto:contactooma@gmail.com">Get in touch</a>
+
+            </div>
         </div>
-      </div>
     </div>
 
-
+    <div class="row">
+        <div class="col-l-12" id="footerBg">
+            <div id="footer">
+                <p class="text-muted">Designed by Kyle Joyce<br><a href="https://github.com/joyceky">joyceky on Github</a></p>
+            </div>
+        </div>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-  </body>
+    <script>
+        // this function must be defined in the global scope
+        window.fadeIn = function(obj) {
+            $(obj).fadeIn(700);
+        }
+    </script>
+
+</body>
+
 </html>

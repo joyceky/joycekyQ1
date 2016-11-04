@@ -1,21 +1,20 @@
 "use strict";
 $(function() {
-  if(storedHArt) {
-    hArt = storedHArt;
-    addToContent();
-  }
+    if (storedHArt) {
+        hArt = storedHArt;
+        addToContent();
+    }
     makeButtons();
     getSearch();
     arrowListeners();
     document.onkeydown = checkKey;
 
-  });
+});
 
 /*********************GLOBALS***************************/
 var hArt = [];
 var currentImg = 0;
 var artDiv = $("#art");
-var infoDiv = $("#info");
 var artImage = $('#art-image');
 var title = $('#title');
 var culture = $('#culture');
@@ -49,6 +48,7 @@ function makeButtons() {
     });
 }
 
+
 function getSearch() {
     $('#domainform').on('submit', function(event) {
         event.preventDefault();
@@ -62,36 +62,37 @@ function getSearch() {
     });
 }
 
-function checkKey(e) {
 
+function checkKey(e) {
     e = e || window.event;
 
-   if (e.keyCode == '37') {
-       console.log("LEFT");
-       moveBack();
+    if (e.keyCode == '37') {
+        console.log("LEFT");
+        moveBack();
 
-     }
-    else if (e.keyCode == '39') {
-       console.log("RIGHT");
-       moveForward();
+    } else if (e.keyCode == '39') {
+        console.log("RIGHT");
+        moveForward();
     }
-   }
+}
 
-   function arrowListeners() {
-     var forward = $("#forward");
 
-     forward.on("click", function(event) {
-         event.preventDefault();
-         moveForward();
-     });
+function arrowListeners() {
+    var forward = $("#forward");
 
-     var back = $("#back");
+    forward.on("click", function(event) {
+        event.preventDefault();
+        moveForward();
+    });
 
-     back.on("click", function() {
-         event.preventDefault();
-         moveBack();
-         });
-   }
+    var back = $("#back");
+
+    back.on("click", function() {
+        event.preventDefault();
+        moveBack();
+    });
+}
+
 
 function getHartSearch(quer) {
 
@@ -101,10 +102,10 @@ function getHartSearch(quer) {
     });
 
     request.done(function(data) {
-      if (data) {
-          hArt = [];
-          localStorage.setItem("s", JSON.stringify("[]"));
-      }
+        if (data) {
+            hArt = [];
+            localStorage.setItem("s", JSON.stringify("[]"));
+        }
 
         for (var i = 0; i < data.records.length; i++) {
             let artData = data.records[i];
@@ -115,7 +116,6 @@ function getHartSearch(quer) {
         localStorage.setItem("storedHArt", JSON.stringify(hArt));
         addToContent();
     });
-
 
     request.fail(function(jqXHR, textStatus) {
         console.log("Request failed: " + textStatus);
@@ -148,11 +148,7 @@ function getHArtDropdown(classif) {
 
 
 function addToContent() {
-
     for (var i = 0; i <= hArt.length; i++) {
-
-        // var art = '<img class="art" src=' + hArt[i].primaryimageurl + '>';
-        // artDiv.append(art);
 
         artImage.attr('src', hArt[i].primaryimageurl);
 
@@ -176,76 +172,73 @@ function addToContent() {
         currentImg = i;
         break;
     }
-    artDiv.fadeIn();
+    artImage.fadeIn('slow');
 }
 
 
 function moveForward() {
-    console.log("LISTENING");
+    for (var i = currentImg + 1; i < hArt.length + 1; i++) {
 
-        for (var i = currentImg + 1; i < hArt.length + 1; i++) {
-
-            if (i === hArt.length) {
-                i = 0;
-            }
-
-            artImage.attr('src', hArt[i].primaryimageurl);
-
-            let p = i + 1;
-
-            $("#position").text(p + " out of " + hArt.length);
-
-            if (hArt[i].title) {
-                title.text(hArt[i].title);
-            }
-            if (hArt[i].culture) {
-                culture.text(hArt[i].culture);
-            }
-            if (hArt[i].period) {
-                period.text(hArt[i].period);
-            }
-            if (hArt[i].medium) {
-                medium.text(hArt[i].medium);
-            }
-
-            currentImg = i;
-
-            break;
+        if (i === hArt.length) {
+            i = 0;
         }
-        artDiv.fadeIn();
+
+        artImage.attr('src', hArt[i].primaryimageurl);
+
+        let p = i + 1;
+
+        $("#position").text(p + " out of " + hArt.length);
+
+        if (hArt[i].title) {
+            title.text(hArt[i].title);
+        }
+        if (hArt[i].culture) {
+            culture.text(hArt[i].culture);
+        }
+        if (hArt[i].period) {
+            period.text(hArt[i].period);
+        }
+        if (hArt[i].medium) {
+            medium.text(hArt[i].medium);
+        }
+
+        currentImg = i;
+
+        break;
+    }
+    artDiv.fadeIn();
 }
 
 
 function moveBack() {
+    for (var i = currentImg - 1; i < hArt.length + 1; i++) {
 
-        for (var i = currentImg - 1; i < hArt.length + 1; i++) {
-
-            if (i === -1) {
-                i = hArt.length - 1;
-            }
-
-            artImage.attr('src', hArt[i].primaryimageurl);
-
-            let p = i + 1;
-
-            $("#position").text(p + " out of " + hArt.length);
-
-            if (hArt[i].title) {
-                title.text(hArt[i].title);
-            }
-            if (hArt[i].culture) {
-                culture.text(hArt[i].culture);
-            }
-            if (hArt[i].period) {
-                period.text(hArt[i].period);
-            }
-            if (hArt[i].medium) {
-                medium.text(hArt[i].medium);
-            }
-
-            currentImg = i;
-
-            break;
+        if (i === -1) {
+            i = hArt.length - 1;
         }
-        artDiv.fadeIn();
+
+        artImage.attr('src', hArt[i].primaryimageurl);
+
+        let p = i + 1;
+
+        $("#position").text(p + " out of " + hArt.length);
+
+        if (hArt[i].title) {
+            title.text(hArt[i].title);
+        }
+        if (hArt[i].culture) {
+            culture.text(hArt[i].culture);
+        }
+        if (hArt[i].period) {
+            period.text(hArt[i].period);
+        }
+        if (hArt[i].medium) {
+            medium.text(hArt[i].medium);
+        }
+
+        currentImg = i;
+
+        break;
+    }
+    artDiv.fadeIn();
 }

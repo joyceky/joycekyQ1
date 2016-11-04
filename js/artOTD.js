@@ -2,15 +2,6 @@
 
 $(document).ready(function() {
 
-    // var now = new Date();
-    // console.log(now, "NOW");
-    // var millisTill10 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10, 0, 0, 0) - now;
-    // if (millisTill10 < 0) {
-    //      millisTill10 += 86400000; // it's after 10am, try 10am tomorrow.
-    // }
-    //
-    // setTimeout(function(){alert("It's 10am!")}, millisTill10);
-
     var storedArt = JSON.parse(localStorage.getItem("artArr"));
     var Length = JSON.parse(localStorage.getItem("arrayLength"));
     var imageNum = JSON.parse(localStorage.getItem("currentImg"));
@@ -27,6 +18,9 @@ $(document).ready(function() {
     } else {
         callRijks();
     }
+
+    getQuote();
+
 });
 
 var artArr = JSON.parse(localStorage.getItem("artArr"));
@@ -57,7 +51,6 @@ function callRijks() {
     });
 
     request.done(function(data) {
-        // console.log(data.artObjects);
         artArr = [];
 
         for (var i = 0; i < data.artObjects.length; i++) {
@@ -67,9 +60,7 @@ function callRijks() {
             artArr.push(data.artObjects[i]);
         }
 
-        // console.log(artArr, "ONLY IMAGES");
         localStorage.setItem("artArr", JSON.stringify(artArr));
-        // console.log(storedArt);
         currentImg = 0;
         localStorage.setItem("currentImg", JSON.stringify(currentImg));
         console.log(JSON.parse(localStorage.getItem("currentImg")));
@@ -109,4 +100,21 @@ function addToContent() {
         localStorage.setItem("arrayLength", JSON.stringify(arrayLength));
         break;
     }
+}
+
+function getQuote() {
+    var request = $.ajax({
+        url: "http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=jsonp&jsonp=?",
+        dataType: "jsonp"
+    });
+
+    request.done(function(data) {
+        $("#quote").text(data.quoteText);
+        $("#quoteAuthor").text(data.quoteAuthor);
+    });
+
+    request.fail(function(jqXHR, textStatus) {
+        alert("Request failed: " + textStatus);
+
+    });
 }
