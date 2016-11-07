@@ -10,23 +10,13 @@ $(document).ready(function() {
 
 
 /*********************GLOBALS***************************/
-var rijksArt = [];
-var currentImg = 0;
 
-
-
-var artDiv = $("#art");
 var artImage = $('#artist-image');
 var nameA = $('#nameA');
 var originName = $('#originName');
 var bday = $('#birthday');
 var bio = $('#bio');
 var wiki = $("#wikiLink");
-
-
-
-
-var storedRijksArt = JSON.parse(localStorage.getItem("storedRijksArt"));
 
 var classi = ["Rembrandt", "Michelangelo", "Raphael", "Titian"];
 
@@ -105,7 +95,7 @@ function getWikiSearch() {
           bio.text(data.biography);
         }
           if(data.wikipediaUrl) {
-          wiki.attr("src", data.wikipediaUrl);
+          wiki.attr("href", data.wikipediaUrl);
           wiki.text("Further Information");
         }
       });
