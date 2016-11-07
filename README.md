@@ -1,4 +1,6 @@
 # joycekyQ1
 My Q1 project
 
-Pivotal Tracker:
+Deployed: http://ooma.surge.sh/
+
+Pivotal Tracker: https://www.pivotaltracker.com/n/projects/1909847
