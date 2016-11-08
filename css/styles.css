@@ -63,15 +63,13 @@ h2 {
     color: rgb(83, 83, 98);
 }
 
-#museums {
-    height: 480px;
+.museums {
+    height: 430px;
     text-align: center;
     margin: 0 auto;
 }
 
 .museumDisplay {
-    height: 40vh;
-    width: 50vw;
     display: inline-block;
     font-family: "Abril Fatface";
     font-size: 40px;
@@ -79,13 +77,14 @@ h2 {
 }
 
 .museumDisplay img {
-    height: 320px;
+    height: 300px;
     border-radius: 5px;
+    padding: 10px;
 }
 
 #contactDiv {
     height: 200px;
-    width: 100vh;
+    width: 100vw;
     text-align: center;
     margin: 0 auto;
     color: rgb(133, 83, 226);

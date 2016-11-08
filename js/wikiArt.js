@@ -22,8 +22,8 @@ var classi = ["Rembrandt", "Michelangelo", "Raphael", "Titian"];
 
 var classification;
 
-var accessKey = "26a6ea6e0a724a95";
-var secretkey = "bcfbca365657b9df";
+// var accessKey = "26a6ea6e0a724a95";
+// var secretkey = "bcfbca365657b9df";
 /*******************************************************/
 
 function makeButtons() {
@@ -32,23 +32,23 @@ function makeButtons() {
     }
 }
 
-function loginWiki() {
-    var loginUrl = "https://g-wikiart.herokuapp.com/en/Api/2/login?accessCode=837b1a644925467d&secretCode=b09303415adeea33";
-
-    var request = $.ajax({
-            url: loginUrl,
-            dataType: "json"
-    });
-
-    request.done(function(data) {
-        console.log(data);
-        callWiki();
-    });
-
-    request.fail(function(jqXHR, textStatus) {
-        console.log("Request failed: " + textStatus);
-    });
-  }
+// function loginWiki() {
+//     var loginUrl = "https://g-wikiart.herokuapp.com/en/Api/2/login?accessCode=837b1a644925467d&secretCode=b09303415adeea33";
+//
+//     var request = $.ajax({
+//             url: loginUrl,
+//             dataType: "json"
+//     });
+//
+//     request.done(function(data) {
+//         console.log(data);
+//         callWiki();
+//     });
+//
+//     request.fail(function(jqXHR, textStatus) {
+//         console.log("Request failed: " + textStatus);
+//     });
+//   }
 
 
 function getWikiDropDown() {
